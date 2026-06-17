@@ -1,0 +1,1179 @@
+Microsoft Windows [Version 10.0.26200.8655]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\karth>mysql -u root -p -h localhost
+Enter password: **********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database projectsql
+    -> show projectsql
+    -> create database projectsql;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'show projectsql
+create database projectsql' at line 2
+mysql> create database projectsql;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> show projectsql1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'projectsql1' at line 1
+mysql> show projectsql;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'projectsql' at line 1
+mysql> show database projectsql;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database projectsql' at line 1
+mysql> use projectsql;
+Database changed
+mysql> CREATE TABLE departments (
+    ->     dept_id INT PRIMARY KEY,
+    ->     dept_name VARCHAR(50) UNIQUE NOT NULL
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> insert into employees values
+    -> (101,'CSE'),
+    -> (102,'ECE'),
+    -> (103,'EEE'),
+    -> (104,'Mechanical'),
+    -> (105,'Civi');
+ERROR 1146 (42S02): Table 'projectsql.employees' doesn't exist
+mysql> insert into departments values
+    -> (101,'CSE'),
+    -> (102,'ECE'),
+    -> (103,'EEE'),
+    -> (104,'Mechanical'),
+    -> (105,'Civi');
+Query OK, 5 rows affected (0.02 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE students (
+    ->     student_id INT AUTO_INCREMENT PRIMARY KEY,
+    ->     student_name VARCHAR(100) NOT NULL,
+    ->     email VARCHAR(100) UNIQUE,
+    ->     phone VARCHAR(15),
+    ->     cgpa DECIMAL(3,2),
+    ->     dept_id INT,
+    ->     FOREIGN KEY (dept_id) REFERENCES departments(dept_id)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> INSERT INTO students (student_name, email, phone, cgpa, dept_id) VALUES
+    -> ('Saran', 'saran@gmail.com', '9876543210', 8.5, 101),
+    -> ('Priya', 'priya@gmail.com', '9876543211', 9.0, 102),
+    -> ('Rahul', 'rahul@gmail.com', '9876543212', 7.8, 101),
+    -> ('Deepa', 'deepa@gmail.com', '9876543213', 8.9, 103),
+    -> ('Anjali', 'anjali@gmail.com', '9876543214', 8.2, 102),
+    -> ('Kumar', 'kumar@gmail.com', '9876543215', 7.5, 104),
+    -> ('Sneha', 'sneha@gmail.com', '9876543216', 9.1, 101),
+    -> ('Varun', 'varun@gmail.com', '9876543217', 8.0, 105),
+    -> ('Charan', 'charan@gmail.com', '9876543218', 7.2, 104),
+    -> ('Harsha', 'harsha@gmail.com', '9876543219', 8.7, 101);
+Query OK, 10 rows affected (0.01 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE companies (
+    ->     company_id INT PRIMARY KEY,
+    ->     company_name VARCHAR(100) UNIQUE,
+    ->     location VARCHAR(100),
+    ->     package_lpa DECIMAL(4,2)
+    -> );
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> INSERT INTO companies (company_id, company_name, location, package_lpa) VALUES
+    -> (1, 'TCS', 'Hyderabad', 4.5),
+    -> (2, 'Infosys', 'Bangalore', 5.2),
+    -> (3, 'Accenture', 'Chennai', 6.0),
+    -> (4, 'Wipro', 'Pune', 4.2),
+    -> (5, 'Cognizant', 'Hyderabad', 5.8);
+Query OK, 5 rows affected (0.02 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM companies;
++------------+--------------+-----------+-------------+
+| company_id | company_name | location  | package_lpa |
++------------+--------------+-----------+-------------+
+|          1 | TCS          | Hyderabad |        4.50 |
+|          2 | Infosys      | Bangalore |        5.20 |
+|          3 | Accenture    | Chennai   |        6.00 |
+|          4 | Wipro        | Pune      |        4.20 |
+|          5 | Cognizant    | Hyderabad |        5.80 |
++------------+--------------+-----------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> CREATE TABLE jobs (
+    ->     job_id INT PRIMARY KEY,
+    ->     company_id INT,
+    ->     role_name VARCHAR(100),
+    ->     min_cgpa DECIMAL(3,2),
+    ->     FOREIGN KEY (company_id) REFERENCES companies(company_id)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> INSERT INTO jobs (job_id, company_id, role_name, min_cgpa) VALUES
+    -> (1, 1, 'Java Developer', 7.5),
+    -> (2, 2, 'Python Developer', 8.0),
+    -> (3, 3, 'Full Stack Developer', 8.2),
+    -> (4, 4, 'Data Analyst', 7.0),
+    -> (5, 5, 'Software Engineer', 7.8);
+Query OK, 5 rows affected (0.02 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from jobs;
++--------+------------+----------------------+----------+
+| job_id | company_id | role_name            | min_cgpa |
++--------+------------+----------------------+----------+
+|      1 |          1 | Java Developer       |     7.50 |
+|      2 |          2 | Python Developer     |     8.00 |
+|      3 |          3 | Full Stack Developer |     8.20 |
+|      4 |          4 | Data Analyst         |     7.00 |
+|      5 |          5 | Software Engineer    |     7.80 |
++--------+------------+----------------------+----------+
+5 rows in set (0.00 sec)
+
+mysql> CREATE TABLE applications (
+    ->     application_id INT PRIMARY KEY,
+    ->     student_id INT,
+    ->     job_id INT,
+    ->     status VARCHAR(20),
+    ->     FOREIGN KEY (student_id) REFERENCES students(student_id),
+    ->     FOREIGN KEY (job_id) REFERENCES jobs(job_id)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> INSERT INTO applications (application_id, student_id, job_id, status) VALUES
+    -> (1, 1, 1, 'Applied'),
+    -> (2, 1, 5, 'Applied'),
+    -> (3, 2, 3, 'Applied'),
+    -> (4, 3, 1, 'Applied'),
+    -> (5, 4, 2, 'Applied'),
+    -> (6, 5, 3, 'Applied'),
+    -> (7, 6, 4, 'Applied'),
+    -> (8, 7, 5, 'Applied'),
+    -> (9, 8, 2, 'Applied'),
+    -> (10, 10, 3, 'Applied');
+Query OK, 10 rows affected (0.01 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> select * from applications;
++----------------+------------+--------+---------+
+| application_id | student_id | job_id | status  |
++----------------+------------+--------+---------+
+|              1 |          1 |      1 | Applied |
+|              2 |          1 |      5 | Applied |
+|              3 |          2 |      3 | Applied |
+|              4 |          3 |      1 | Applied |
+|              5 |          4 |      2 | Applied |
+|              6 |          5 |      3 | Applied |
+|              7 |          6 |      4 | Applied |
+|              8 |          7 |      5 | Applied |
+|              9 |          8 |      2 | Applied |
+|             10 |         10 |      3 | Applied |
++----------------+------------+--------+---------+
+10 rows in set (0.00 sec)
+
+mysql> CREATE TABLE aptitude_tests (
+    ->     test_id INT PRIMARY KEY,
+    ->     student_id INT,
+    ->     marks INT,
+    ->     FOREIGN KEY (student_id) REFERENCES students(student_id)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> INSERT INTO aptitude_tests (test_id, student_id, marks) VALUES
+    -> (1, 1, 85),
+    -> (2, 2, 92),
+    -> (3, 3, 70),
+    -> (4, 4, 95),
+    -> (5, 5, 80),
+    -> (6, 6, 65),
+    -> (7, 7, 98),
+    -> (8, 8, 75),
+    -> (9, 9, 68),
+    -> (10, 10, 88);
+Query OK, 10 rows affected (0.01 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE interviews (
+    ->     interview_id INT PRIMARY KEY,
+    ->     student_id INT,
+    ->     company_id INT,
+    ->     round_name VARCHAR(50),
+    ->     result VARCHAR(20),
+    ->     FOREIGN KEY (student_id) REFERENCES students(student_id),
+    ->     FOREIGN KEY (company_id) REFERENCES companies(company_id)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> INSERT INTO placements (placement_id, student_id, company_id, package_lpa) VALUES
+    -> (1, 1, 1, 4.5),
+    -> (2, 2, 3, 6.0),
+    -> (3, 4, 2, 5.2),
+    -> (4, 5, 5, 5.8),
+    -> (5, 7, 5, 5.8),
+    -> (6, 8, 2, 5.2),
+    -> ^C
+mysql> INSERT INTO interviews (interview_id, student_id, company_id, round_name, result) VALUES
+    -> (1, 1, 1, 'Technical', 'Pass'),
+    -> (2, 2, 3, 'Technical', 'Pass'),
+    -> (3, 3, 1, 'Technical', 'Fail'),
+    -> (4, 4, 2, 'Technical', 'Pass'),
+    -> (5, 5, 5, 'Technical', 'Pass'),
+    -> (6, 6, 4, 'Technical', 'Fail'),
+    -> (7, 7, 5, 'Technical', 'Pass'),
+    -> (8, 8, 2, 'Technical', 'Pass'),
+    -> (9, 10, 3, 'Technical', 'Pass');
+Query OK, 9 rows affected (0.01 sec)
+Records: 9  Duplicates: 0  Warnings: 0
+
+mysql> select * from interviews;
++--------------+------------+------------+------------+--------+
+| interview_id | student_id | company_id | round_name | result |
++--------------+------------+------------+------------+--------+
+|            1 |          1 |          1 | Technical  | Pass   |
+|            2 |          2 |          3 | Technical  | Pass   |
+|            3 |          3 |          1 | Technical  | Fail   |
+|            4 |          4 |          2 | Technical  | Pass   |
+|            5 |          5 |          5 | Technical  | Pass   |
+|            6 |          6 |          4 | Technical  | Fail   |
+|            7 |          7 |          5 | Technical  | Pass   |
+|            8 |          8 |          2 | Technical  | Pass   |
+|            9 |         10 |          3 | Technical  | Pass   |
++--------------+------------+------------+------------+--------+
+9 rows in set (0.00 sec)
+
+mysql> CREATE TABLE placements (
+    ->     placement_id INT PRIMARY KEY,
+    ->     student_id INT,
+    ->     company_id INT,
+    ->     package_lpa DECIMAL(4,2),
+    ->     FOREIGN KEY (student_id) REFERENCES students(student_id),
+    ->     FOREIGN KEY (company_id) REFERENCES companies(company_id)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> INSERT INTO placements (placement_id, student_id, company_id, package_lpa) VALUES
+    -> (1, 1, 1, 4.5),
+    -> (2, 2, 3, 6.0),
+    -> (3, 4, 2, 5.2),
+    -> (4, 5, 5, 5.8),
+    -> (5, 7, 5, 5.8),
+    -> (6, 8, 2, 5.2),
+    -> (7, 10, 3, 6.0);
+Query OK, 7 rows affected (0.01 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from placements;
++--------------+------------+------------+-------------+
+| placement_id | student_id | company_id | package_lpa |
++--------------+------------+------------+-------------+
+|            1 |          1 |          1 |        4.50 |
+|            2 |          2 |          3 |        6.00 |
+|            3 |          4 |          2 |        5.20 |
+|            4 |          5 |          5 |        5.80 |
+|            5 |          7 |          5 |        5.80 |
+|            6 |          8 |          2 |        5.20 |
+|            7 |         10 |          3 |        6.00 |
++--------------+------------+------------+-------------+
+7 rows in set (0.00 sec)
+
+mysql> CREATE TABLE skills (
+    ->     skill_id INT PRIMARY KEY,
+    ->     skill_name VARCHAR(100)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> INSERT INTO skills (skill_id, skill_name) VALUES
+    -> (1, 'Java'),
+    -> (2, 'Python'),
+    -> (3, 'SQL'),
+    -> (4, 'React'),
+    -> (5, 'Spring Boot');
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from skills
+    -> ;
++----------+-------------+
+| skill_id | skill_name  |
++----------+-------------+
+|        1 | Java        |
+|        2 | Python      |
+|        3 | SQL         |
+|        4 | React       |
+|        5 | Spring Boot |
++----------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> CREATE TABLE student_skills (
+    ->     student_id INT,
+    ->     skill_id INT,
+    ->     PRIMARY KEY (student_id, skill_id)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> INSERT INTO student_skills (student_id, skill_id) VALUES
+    -> (1, 1),
+    -> (1, 3),
+    -> (2, 2),
+    -> (2, 4),
+    -> (3, 1),
+    -> (4, 2),
+    -> (5, 5),
+    -> (7, 1),
+    -> (7, 5),
+    -> (10, 3);
+Query OK, 10 rows affected (0.01 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> select * from student_skills;
++------------+----------+
+| student_id | skill_id |
++------------+----------+
+|          1 |        1 |
+|          1 |        3 |
+|          2 |        2 |
+|          2 |        4 |
+|          3 |        1 |
+|          4 |        2 |
+|          5 |        5 |
+|          7 |        1 |
+|          7 |        5 |
+|         10 |        3 |
++------------+----------+
+10 rows in set (0.00 sec)
+
+mysql> select student_name,department_name
+    -> from students
+    -> join departments on students.dept_id=departments.dept_id;
+ERROR 1054 (42S22): Unknown column 'department_name' in 'field list'
+mysql> select * from departments
+    -> ;
++---------+------------+
+| dept_id | dept_name  |
++---------+------------+
+|     105 | Civi       |
+|     101 | CSE        |
+|     102 | ECE        |
+|     103 | EEE        |
+|     104 | Mechanical |
++---------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from students;
++------------+--------------+------------------+------------+------+---------+
+| student_id | student_name | email            | phone      | cgpa | dept_id |
++------------+--------------+------------------+------------+------+---------+
+|          1 | Saran        | saran@gmail.com  | 9876543210 | 8.50 |     101 |
+|          2 | Priya        | priya@gmail.com  | 9876543211 | 9.00 |     102 |
+|          3 | Rahul        | rahul@gmail.com  | 9876543212 | 7.80 |     101 |
+|          4 | Deepa        | deepa@gmail.com  | 9876543213 | 8.90 |     103 |
+|          5 | Anjali       | anjali@gmail.com | 9876543214 | 8.20 |     102 |
+|          6 | Kumar        | kumar@gmail.com  | 9876543215 | 7.50 |     104 |
+|          7 | Sneha        | sneha@gmail.com  | 9876543216 | 9.10 |     101 |
+|          8 | Varun        | varun@gmail.com  | 9876543217 | 8.00 |     105 |
+|          9 | Charan       | charan@gmail.com | 9876543218 | 7.20 |     104 |
+|         10 | Harsha       | harsha@gmail.com | 9876543219 | 8.70 |     101 |
++------------+--------------+------------------+------------+------+---------+
+10 rows in set (0.00 sec)
+
+mysql> select student_name,depart_name
+    -> from students
+    -> join departments on students.dept_id=departments.dept_id;
+ERROR 1054 (42S22): Unknown column 'depart_name' in 'field list'
+mysql> select student_name,dept_name
+    -> from students
+    -> join departments on students.dept_id=departments.dept_id;
++--------------+------------+
+| student_name | dept_name  |
++--------------+------------+
+| Varun        | Civi       |
+| Saran        | CSE        |
+| Rahul        | CSE        |
+| Sneha        | CSE        |
+| Harsha       | CSE        |
+| Priya        | ECE        |
+| Anjali       | ECE        |
+| Deepa        | EEE        |
+| Kumar        | Mechanical |
+| Charan       | Mechanical |
++--------------+------------+
+10 rows in set (0.00 sec)
+
+mysql> select * from companies;
++------------+--------------+-----------+-------------+
+| company_id | company_name | location  | package_lpa |
++------------+--------------+-----------+-------------+
+|          1 | TCS          | Hyderabad |        4.50 |
+|          2 | Infosys      | Bangalore |        5.20 |
+|          3 | Accenture    | Chennai   |        6.00 |
+|          4 | Wipro        | Pune      |        4.20 |
+|          5 | Cognizant    | Hyderabad |        5.80 |
++------------+--------------+-----------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select student_name,company_name from students inner join
+    -> companies on students.dept_id=companies.dept_id;
+ERROR 1054 (42S22): Unknown column 'companies.dept_id' in 'on clause'
+mysql> select student_name,company_name
+    -> from s
+    -> join applications on students.student_id=applications.student_id
+    -> join jobs on applications.job_id=jobs.job_id
+    -> join companies on jobs.company_id=companies.company_id;
+ERROR 1146 (42S02): Table 'projectsql.s' doesn't exist
+mysql> select student_name,company_name
+    -> from students
+    -> join applications on students.student_id=applications.student_id
+    -> join jobs on applications.job_id=jobs.job_id
+    -> join companies on jobs.company_id=companies.company_id;
++--------------+--------------+
+| student_name | company_name |
++--------------+--------------+
+| Saran        | TCS          |
+| Rahul        | TCS          |
+| Deepa        | Infosys      |
+| Varun        | Infosys      |
+| Priya        | Accenture    |
+| Anjali       | Accenture    |
+| Harsha       | Accenture    |
+| Kumar        | Wipro        |
+| Saran        | Cognizant    |
+| Sneha        | Cognizant    |
++--------------+--------------+
+10 rows in set (0.00 sec)
+
+mysql> select * from students where cgpa>8;
++------------+--------------+------------------+------------+------+---------+
+| student_id | student_name | email            | phone      | cgpa | dept_id |
++------------+--------------+------------------+------------+------+---------+
+|          1 | Saran        | saran@gmail.com  | 9876543210 | 8.50 |     101 |
+|          2 | Priya        | priya@gmail.com  | 9876543211 | 9.00 |     102 |
+|          4 | Deepa        | deepa@gmail.com  | 9876543213 | 8.90 |     103 |
+|          5 | Anjali       | anjali@gmail.com | 9876543214 | 8.20 |     102 |
+|          7 | Sneha        | sneha@gmail.com  | 9876543216 | 9.10 |     101 |
+|         10 | Harsha       | harsha@gmail.com | 9876543219 | 8.70 |     101 |
++------------+--------------+------------------+------------+------+---------+
+6 rows in set (0.01 sec)
+
+mysql> select * from companies where package_lpa>5;
++------------+--------------+-----------+-------------+
+| company_id | company_name | location  | package_lpa |
++------------+--------------+-----------+-------------+
+|          2 | Infosys      | Bangalore |        5.20 |
+|          3 | Accenture    | Chennai   |        6.00 |
+|          5 | Cognizant    | Hyderabad |        5.80 |
++------------+--------------+-----------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select student_name
+    -> from students
+    -> join interviews on students.student_id=interviews.student_id;
++--------------+
+| student_name |
++--------------+
+| Saran        |
+| Priya        |
+| Rahul        |
+| Deepa        |
+| Anjali       |
+| Kumar        |
+| Sneha        |
+| Varun        |
+| Harsha       |
++--------------+
+9 rows in set (0.00 sec)
+
+mysql> select student_name
+    -> from students
+    -> join placements on students.student_id=placements.student_id;
++--------------+
+| student_name |
++--------------+
+| Saran        |
+| Priya        |
+| Deepa        |
+| Anjali       |
+| Sneha        |
+| Varun        |
+| Harsha       |
++--------------+
+7 rows in set (0.00 sec)
+
+mysql> select student_name
+    -> from students
+    -> join placements on students.student_id!=placements.student_id;
++--------------+
+| student_name |
++--------------+
+| Saran        |
+| Saran        |
+| Saran        |
+| Saran        |
+| Saran        |
+| Saran        |
+| Priya        |
+| Priya        |
+| Priya        |
+| Priya        |
+| Priya        |
+| Priya        |
+| Rahul        |
+| Rahul        |
+| Rahul        |
+| Rahul        |
+| Rahul        |
+| Rahul        |
+| Rahul        |
+| Deepa        |
+| Deepa        |
+| Deepa        |
+| Deepa        |
+| Deepa        |
+| Deepa        |
+| Anjali       |
+| Anjali       |
+| Anjali       |
+| Anjali       |
+| Anjali       |
+| Anjali       |
+| Kumar        |
+| Kumar        |
+| Kumar        |
+| Kumar        |
+| Kumar        |
+| Kumar        |
+| Kumar        |
+| Sneha        |
+| Sneha        |
+| Sneha        |
+| Sneha        |
+| Sneha        |
+| Sneha        |
+| Varun        |
+| Varun        |
+| Varun        |
+| Varun        |
+| Varun        |
+| Varun        |
+| Charan       |
+| Charan       |
+| Charan       |
+| Charan       |
+| Charan       |
+| Charan       |
+| Charan       |
+| Harsha       |
+| Harsha       |
+| Harsha       |
+| Harsha       |
+| Harsha       |
+| Harsha       |
++--------------+
+63 rows in set (0.00 sec)
+
+mysql> select distinct student_name
+    -> from students
+    -> join placements on students.student_id=placements.student_id;
++--------------+
+| student_name |
++--------------+
+| Saran        |
+| Priya        |
+| Deepa        |
+| Anjali       |
+| Sneha        |
+| Varun        |
+| Harsha       |
++--------------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT student_name
+    -> FROM students
+    -> WHERE student_id NOT IN (
+    ->     SELECT student_id FROM placements
+    -> );
++--------------+
+| student_name |
++--------------+
+| Rahul        |
+| Kumar        |
+| Charan       |
++--------------+
+3 rows in set (0.01 sec)
+
+mysql> select count(*) from students;
++----------+
+| count(*) |
++----------+
+|       10 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select avg(cgpa) from students;
++-----------+
+| avg(cgpa) |
++-----------+
+|  8.290000 |
++-----------+
+1 row in set (0.01 sec)
+
+mysql> select max(cgpa) from students;
++-----------+
+| max(cgpa) |
++-----------+
+|      9.10 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select min(cgpa) from students;
++-----------+
+| min(cgpa) |
++-----------+
+|      7.20 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select count(*) from students group by dept_id;
++----------+
+| count(*) |
++----------+
+|        4 |
+|        2 |
+|        1 |
+|        2 |
+|        1 |
++----------+
+5 rows in set (0.00 sec)
+
+mysql> select dept_name,count(student_id) from departments join students ondepartments.dept_id=students.dept_id group by dept_id;
+ERROR 1052 (23000): Column 'dept_id' in group statement is ambiguous
+mysql> select dept_name,count(student_id) from departments join students ondepartments.dept_id=students.dept_id group by dept_name;
++------------+-------------------+
+| dept_name  | count(student_id) |
++------------+-------------------+
+| Civi       |                 1 |
+| CSE        |                 4 |
+| ECE        |                 2 |
+| EEE        |                 1 |
+| Mechanical |                 2 |
++------------+-------------------+
+5 rows in set (0.00 sec)
+
+mysql> select company_name,count(company_id) from companies join placementson companies.company_id=placements.company_id group by company_name;
+ERROR 1052 (23000): Column 'company_id' in field list is ambiguous
+mysql> select company_name,count(student_id) from companies join placementson companies.company_id=placements.company_id group by company_name;
++--------------+-------------------+
+| company_name | count(student_id) |
++--------------+-------------------+
+| Accenture    |                 2 |
+| Cognizant    |                 2 |
+| Infosys      |                 2 |
+| TCS          |                 1 |
++--------------+-------------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from departments;
++---------+------------+
+| dept_id | dept_name  |
++---------+------------+
+|     105 | Civi       |
+|     101 | CSE        |
+|     102 | ECE        |
+|     103 | EEE        |
+|     104 | Mechanical |
++---------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select dept_name,count(student_id)
+    -> from departments
+    -> join students on departments.dept_id=students.dept_id
+    -> group by dept_name
+    -> having count(student_id)>2;
++-----------+-------------------+
+| dept_name | count(student_id) |
++-----------+-------------------+
+| CSE       |                 4 |
++-----------+-------------------+
+1 row in set (0.00 sec)
+
+mysql> select company_name,count(company_id)
+    -> from companies
+    -> join placements on companies.company_id=placements.company_id
+    -> group by company_name
+    -> having count(company_id)>2;
+ERROR 1052 (23000): Column 'company_id' in field list is ambiguous
+mysql> select company_name,count(student_id)
+    -> from companies
+    -> join placements on companies.company_id=placements.company_id
+    -> group by company_name
+    -> having count(student_id)>1;
++--------------+-------------------+
+| company_name | count(student_id) |
++--------------+-------------------+
+| Accenture    |                 2 |
+| Cognizant    |                 2 |
+| Infosys      |                 2 |
++--------------+-------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from students;
++------------+--------------+------------------+------------+------+---------+
+| student_id | student_name | email            | phone      | cgpa | dept_id |
++------------+--------------+------------------+------------+------+---------+
+|          1 | Saran        | saran@gmail.com  | 9876543210 | 8.50 |     101 |
+|          2 | Priya        | priya@gmail.com  | 9876543211 | 9.00 |     102 |
+|          3 | Rahul        | rahul@gmail.com  | 9876543212 | 7.80 |     101 |
+|          4 | Deepa        | deepa@gmail.com  | 9876543213 | 8.90 |     103 |
+|          5 | Anjali       | anjali@gmail.com | 9876543214 | 8.20 |     102 |
+|          6 | Kumar        | kumar@gmail.com  | 9876543215 | 7.50 |     104 |
+|          7 | Sneha        | sneha@gmail.com  | 9876543216 | 9.10 |     101 |
+|          8 | Varun        | varun@gmail.com  | 9876543217 | 8.00 |     105 |
+|          9 | Charan       | charan@gmail.com | 9876543218 | 7.20 |     104 |
+|         10 | Harsha       | harsha@gmail.com | 9876543219 | 8.70 |     101 |
++------------+--------------+------------------+------------+------+---------+
+10 rows in set (0.00 sec)
+
+mysql> select *from departments;
++---------+------------+
+| dept_id | dept_name  |
++---------+------------+
+|     105 | Civi       |
+|     101 | CSE        |
+|     102 | ECE        |
+|     103 | EEE        |
+|     104 | Mechanical |
++---------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select dept_name,avg(cgpa)
+    -> from departments
+    -> join students on departments.dept_id=students.dept_id
+    -> group by dept_name
+    -> having avg(cgpa)>8;
++-----------+-----------+
+| dept_name | avg(cgpa) |
++-----------+-----------+
+| CSE       |  8.525000 |
+| ECE       |  8.600000 |
+| EEE       |  8.900000 |
++-----------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select student_name,dept_name
+    -> from students
+    -> Inner join departments on students.dept_id=departments.dept_id;
++--------------+------------+
+| student_name | dept_name  |
++--------------+------------+
+| Varun        | Civi       |
+| Saran        | CSE        |
+| Rahul        | CSE        |
+| Sneha        | CSE        |
+| Harsha       | CSE        |
+| Priya        | ECE        |
+| Anjali       | ECE        |
+| Deepa        | EEE        |
+| Kumar        | Mechanical |
+| Charan       | Mechanical |
++--------------+------------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT s.student_name, c.company_name
+    -> FROM students s
+    -> JOIN applications a ON s.student_id = a.student_id
+    -> JOIN jobs j ON a.job_id = j.job_id
+    -> JOIN companies c ON j.company_id = c.company_id;
++--------------+--------------+
+| student_name | company_name |
++--------------+--------------+
+| Saran        | TCS          |
+| Rahul        | TCS          |
+| Deepa        | Infosys      |
+| Varun        | Infosys      |
+| Priya        | Accenture    |
+| Anjali       | Accenture    |
+| Harsha       | Accenture    |
+| Kumar        | Wipro        |
+| Saran        | Cognizant    |
+| Sneha        | Cognizant    |
++--------------+--------------+
+10 rows in set (0.00 sec)
+
+mysql> select company_name,jobs
+    -> from companies join jobs on companies.company_id=jobs.company_id;
+ERROR 1054 (42S22): Unknown column 'jobs' in 'field list'
+mysql> select company_name,role_name
+    -> from companies join jobs on companies.company_id=jobs.company_id;
++--------------+----------------------+
+| company_name | role_name            |
++--------------+----------------------+
+| Accenture    | Full Stack Developer |
+| Cognizant    | Software Engineer    |
+| Infosys      | Python Developer     |
+| TCS          | Java Developer       |
+| Wipro        | Data Analyst         |
++--------------+----------------------+
+5 rows in set (0.00 sec)
+
+mysql> select* from applications
+    -> ;
++----------------+------------+--------+---------+
+| application_id | student_id | job_id | status  |
++----------------+------------+--------+---------+
+|              1 |          1 |      1 | Applied |
+|              2 |          1 |      5 | Applied |
+|              3 |          2 |      3 | Applied |
+|              4 |          3 |      1 | Applied |
+|              5 |          4 |      2 | Applied |
+|              6 |          5 |      3 | Applied |
+|              7 |          6 |      4 | Applied |
+|              8 |          7 |      5 | Applied |
+|              9 |          8 |      2 | Applied |
+|             10 |         10 |      3 | Applied |
++----------------+------------+--------+---------+
+10 rows in set (0.00 sec)
+
+mysql> select student_name,application_id,status
+    -> from stidents
+    -> ^C
+mysql> select student_name,application_id,status
+    -> from students
+    -> left join application
+    -> on students.student_id=applications.student_id;
+ERROR 1146 (42S02): Table 'projectsql.application' doesn't exist
+mysql> select student_name,application_id,status
+    -> from students
+    -> left join applications
+    -> select student_name,application_id,status
+    -> ^C
+mysql> select student_name,application_id,status
+    -> from students
+    -> left join applications
+    -> on students.student_id=applications.student_id;
++--------------+----------------+---------+
+| student_name | application_id | status  |
++--------------+----------------+---------+
+| Saran        |              1 | Applied |
+| Saran        |              2 | Applied |
+| Priya        |              3 | Applied |
+| Rahul        |              4 | Applied |
+| Deepa        |              5 | Applied |
+| Anjali       |              6 | Applied |
+| Kumar        |              7 | Applied |
+| Sneha        |              8 | Applied |
+| Varun        |              9 | Applied |
+| Charan       |           NULL | NULL    |
+| Harsha       |             10 | Applied |
++--------------+----------------+---------+
+11 rows in set (0.00 sec)
+
+mysql> SELECT s.student_name
+    -> FROM students s
+    -> LEFT JOIN applications a
+    -> ON s.student_id = a.student_id
+    -> WHERE a.student_id IS NULL;
++--------------+
+| student_name |
++--------------+
+| Charan       |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select * from students where cgpa=(select max(cgpa) from students;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> select * from students where cgpa=(select max(cgpa) from students);
++------------+--------------+-----------------+------------+------+---------+
+| student_id | student_name | email           | phone      | cgpa | dept_id|
++------------+--------------+-----------------+------------+------+---------+
+|          7 | Sneha        | sneha@gmail.com | 9876543216 | 9.10 |     101|
++------------+--------------+-----------------+------------+------+---------+
+1 row in set (0.00 sec)
+
+mysql> select * from students where cgpa>(select avg(cgpa) from students);
++------------+--------------+------------------+------------+------+---------+
+| student_id | student_name | email            | phone      | cgpa | dept_id |
++------------+--------------+------------------+------------+------+---------+
+|          1 | Saran        | saran@gmail.com  | 9876543210 | 8.50 |     101 |
+|          2 | Priya        | priya@gmail.com  | 9876543211 | 9.00 |     102 |
+|          4 | Deepa        | deepa@gmail.com  | 9876543213 | 8.90 |     103 |
+|          7 | Sneha        | sneha@gmail.com  | 9876543216 | 9.10 |     101 |
+|         10 | Harsha       | harsha@gmail.com | 9876543219 | 8.70 |     101 |
++------------+--------------+------------------+------------+------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select * from companies;
++------------+--------------+-----------+-------------+
+| company_id | company_name | location  | package_lpa |
++------------+--------------+-----------+-------------+
+|          1 | TCS          | Hyderabad |        4.50 |
+|          2 | Infosys      | Bangalore |        5.20 |
+|          3 | Accenture    | Chennai   |        6.00 |
+|          4 | Wipro        | Pune      |        4.20 |
+|          5 | Cognizant    | Hyderabad |        5.80 |
++------------+--------------+-----------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from companies where package_lpa=(select max(package_lpa) from companies;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> select * from companies where package_lpa=(select max(package_lpa) from companies);
++------------+--------------+----------+-------------+
+| company_id | company_name | location | package_lpa |
++------------+--------------+----------+-------------+
+|          3 | Accenture    | Chennai  |        6.00 |
++------------+--------------+----------+-------------+
+1 row in set (0.00 sec)
+
+mysql> select * from placements;
++--------------+------------+------------+-------------+
+| placement_id | student_id | company_id | package_lpa |
++--------------+------------+------------+-------------+
+|            1 |          1 |          1 |        4.50 |
+|            2 |          2 |          3 |        6.00 |
+|            3 |          4 |          2 |        5.20 |
+|            4 |          5 |          5 |        5.80 |
+|            5 |          7 |          5 |        5.80 |
+|            6 |          8 |          2 |        5.20 |
+|            7 |         10 |          3 |        6.00 |
++--------------+------------+------------+-------------+
+7 rows in set (0.00 sec)
+
+mysql> select student_name
+    -> from students
+    -> join placements on students.student_id=placements.student_id
+    -> join companies on placements.company_id=companies.company_id
+    -> where company_name='TCS';
++--------------+
+| student_name |
++--------------+
+| Saran        |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT s.student_name, a.status
+    -> FROM students s
+    -> JOIN applications a
+    -> ON s.student_id = a.student_id
+    -> WHERE a.status != 'Selected';
++--------------+---------+
+| student_name | status  |
++--------------+---------+
+| Saran        | Applied |
+| Saran        | Applied |
+| Priya        | Applied |
+| Rahul        | Applied |
+| Deepa        | Applied |
+| Anjali       | Applied |
+| Kumar        | Applied |
+| Sneha        | Applied |
+| Varun        | Applied |
+| Harsha       | Applied |
++--------------+---------+
+10 rows in set (0.00 sec)
+
+mysql> CREATE VIEW selected_students AS
+    -> SELECT s.student_name, c.company_name, p.package_lpa
+    -> FROM placements p
+    -> JOIN students s ON p.student_id = s.student_id
+    -> JOIN companies c ON p.company_id = c.company_id;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> CREATE VIEW high_cgpa_students AS
+    -> SELECT *
+    -> FROM students
+    -> WHERE cgpa > 8;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> SELECT * FROM high_cgpa_students;
++------------+--------------+------------------+------------+------+---------+
+| student_id | student_name | email            | phone      | cgpa | dept_id |
++------------+--------------+------------------+------------+------+---------+
+|          1 | Saran        | saran@gmail.com  | 9876543210 | 8.50 |     101 |
+|          2 | Priya        | priya@gmail.com  | 9876543211 | 9.00 |     102 |
+|          4 | Deepa        | deepa@gmail.com  | 9876543213 | 8.90 |     103 |
+|          5 | Anjali       | anjali@gmail.com | 9876543214 | 8.20 |     102 |
+|          7 | Sneha        | sneha@gmail.com  | 9876543216 | 9.10 |     101 |
+|         10 | Harsha       | harsha@gmail.com | 9876543219 | 8.70 |     101 |
++------------+--------------+------------------+------------+------+---------+
+6 rows in set (0.01 sec)
+
+mysql> DELIMITER //
+mysql> CREATE PROCEDURE show_students()
+    -> BEGIN
+    ->     SELECT * FROM students;
+    -> END //
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> DELIMITER ;
+mysql> CALL show_students();
++------------+--------------+------------------+------------+------+---------+
+| student_id | student_name | email            | phone      | cgpa | dept_id |
++------------+--------------+------------------+------------+------+---------+
+|          1 | Saran        | saran@gmail.com  | 9876543210 | 8.50 |     101 |
+|          2 | Priya        | priya@gmail.com  | 9876543211 | 9.00 |     102 |
+|          3 | Rahul        | rahul@gmail.com  | 9876543212 | 7.80 |     101 |
+|          4 | Deepa        | deepa@gmail.com  | 9876543213 | 8.90 |     103 |
+|          5 | Anjali       | anjali@gmail.com | 9876543214 | 8.20 |     102 |
+|          6 | Kumar        | kumar@gmail.com  | 9876543215 | 7.50 |     104 |
+|          7 | Sneha        | sneha@gmail.com  | 9876543216 | 9.10 |     101 |
+|          8 | Varun        | varun@gmail.com  | 9876543217 | 8.00 |     105 |
+|          9 | Charan       | charan@gmail.com | 9876543218 | 7.20 |     104 |
+|         10 | Harsha       | harsha@gmail.com | 9876543219 | 8.70 |     101 |
++------------+--------------+------------------+------------+------+---------+
+10 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> DELIMITER //
+mysql> CREATE PROCEDURE get_students_by_dept(IN dept INT)
+    -> BEGIN
+    ->     SELECT * FROM students
+    ->     WHERE dept_id = dept;
+    -> END //
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> DELIMITER ;
+mysql> CALL get_students_by_dept(101);
++------------+--------------+------------------+------------+------+---------+
+| student_id | student_name | email            | phone      | cgpa | dept_id |
++------------+--------------+------------------+------------+------+---------+
+|          1 | Saran        | saran@gmail.com  | 9876543210 | 8.50 |     101 |
+|          3 | Rahul        | rahul@gmail.com  | 9876543212 | 7.80 |     101 |
+|          7 | Sneha        | sneha@gmail.com  | 9876543216 | 9.10 |     101 |
+|         10 | Harsha       | harsha@gmail.com | 9876543219 | 8.70 |     101 |
++------------+--------------+------------------+------------+------+---------+
+4 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> DELIMITER //
+mysql> CREATE PROCEDURE show_placed_students()
+    -> BEGIN
+    ->     SELECT s.student_name, c.company_name, p.package_lpa
+    ->     FROM placements p
+    ->     JOIN students s ON p.student_id = s.student_id
+    ->     JOIN companies c ON p.company_id = c.company_id;
+    -> END //
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> DELIMITER ;
+mysql> CALL show_placed_students();
++--------------+--------------+-------------+
+| student_name | company_name | package_lpa |
++--------------+--------------+-------------+
+| Priya        | Accenture    |        6.00 |
+| Harsha       | Accenture    |        6.00 |
+| Anjali       | Cognizant    |        5.80 |
+| Sneha        | Cognizant    |        5.80 |
+| Deepa        | Infosys      |        5.20 |
+| Varun        | Infosys      |        5.20 |
+| Saran        | TCS          |        4.50 |
++--------------+--------------+-------------+
+7 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> DELIMITER //
+mysql> CREATE PROCEDURE add_student(
+    ->     IN sname VARCHAR(100),
+    ->     IN semail VARCHAR(100),
+    ->     IN sphone VARCHAR(15),
+    ->     IN scgpa DECIMAL(3,2),
+    ->     IN sdept INT
+    -> )
+    -> BEGIN
+    ->     INSERT INTO students(student_name,email,phone,cgpa,dept_id)
+    ->     VALUES(sname, semail, sphone, scgpa, sdept);
+    -> END //
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> DELIMITER ;
+mysql> CALL add_student('Ramesh','ramesh@gmail.com','9876543299',8.6,101);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> DELIMITER //
+mysql> CREATE PROCEDURE update_student_cgpa(
+    ->     IN sid INT,
+    ->     IN new_cgpa DECIMAL(3,2)
+    -> )
+    -> BEGIN
+    ->     UPDATE students
+    ->     SET cgpa = new_cgpa
+    ->     WHERE student_id = sid;
+    -> END //
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> DELIMITER ;
+mysql> CALL update_student_cgpa(1,9.2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> DELIMITER //
+mysql> CREATE TRIGGER auto_status
+    -> BEFORE INSERT ON applications
+    -> FOR EACH ROW
+    -> BEGIN
+    ->     SET NEW.status = 'Applied';
+    -> END //
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> DELIMITER ;
+mysql> INSERT INTO applications(application_id,student_id,job_id)
+    -> VALUES(6,6,4);
+ERROR 1062 (23000): Duplicate entry '6' for key 'applications.PRIMARY'
+mysql> VALUES(12,6,4);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(12,6,4)' at line 1
+mysql> INSERT INTO applications(application_id,student_id,job_id)
+    -> VALUES(12,6,4);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> DELIMITER //
+mysql> CREATE TRIGGER check_student_cgpa
+    -> BEFORE INSERT ON students
+    -> FOR EACH ROW
+    -> BEGIN
+    ->     IF NEW.cgpa < 6 THEN
+    ->         SIGNAL SQLSTATE '45000'
+    ->         SET MESSAGE_TEXT = 'CGPA below 6 not allowed';
+    ->     END IF;
+    -> END //
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> DELIMITER ;
+mysql> CREATE TABLE student_backup (
+    ->     student_id INT,
+    ->     student_name VARCHAR(100),
+    ->     email VARCHAR(100),
+    ->     phone VARCHAR(15),
+    ->     cgpa DECIMAL(3,2),
+    ->     dept_id INT
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> DELIMITER //
+mysql> CREATE TRIGGER backup_deleted_students
+    -> BEFORE DELETE ON students
+    -> FOR EACH ROW
+    -> BEGIN
+    ->     INSERT INTO student_backup
+    ->     VALUES(
+    ->         OLD.student_id,
+    ->         OLD.student_name,
+    ->         OLD.email,
+    ->         OLD.phone,
+    ->         OLD.cgpa,
+    ->         OLD.dept_id
+    ->     );
+    -> END //
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> DELIMITER ;
+mysql> DELETE FROM students WHERE student_id = 3;
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`projectsql`.`applications`, CONSTRAINT `applications_ibfk_1`FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`))
+mysql> SELECT * FROM student_backup;
+Empty set (0.00 sec)
+
