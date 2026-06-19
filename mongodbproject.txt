@@ -1,0 +1,2796 @@
+use food_delivery_db
+switched to db food_delivery_db
+db.customers.insertMany([
+
+{
+
+customer_id:1,
+
+name:"Saran",
+
+email:"saran@gmail.com",
+
+phone:"9876543210",
+
+city:"Bangalore"
+
+},
+
+{
+
+customer_id:2,
+
+name:"Priya",
+
+email:"priya@gmail.com",
+
+phone:"9876543211",
+
+city:"Hyderabad"
+
+},
+
+{
+
+customer_id:3,
+
+name:"Rahul",
+
+email:"rahul@gmail.com",
+
+phone:"9876543212",
+
+city:"Chennai"
+
+},
+
+{
+
+customer_id:4,
+
+name:"Deepa",
+
+email:"deepa@gmail.com",
+
+phone:"9876543213",
+
+city:"Pune"
+
+},
+
+{
+
+customer_id:5,
+
+name:"Anjali",
+
+email:"anjali@gmail.com",
+
+phone:"9876543214",
+
+city:"Bangalore"
+
+}
+
+]);
+
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6a34e3780c8d25409ae0e29f'),
+    '1': ObjectId('6a34e3780c8d25409ae0e2a0'),
+    '2': ObjectId('6a34e3780c8d25409ae0e2a1'),
+    '3': ObjectId('6a34e3780c8d25409ae0e2a2'),
+    '4': ObjectId('6a34e3780c8d25409ae0e2a3')
+  }
+}
+db.restaurants.insertMany([
+
+{
+
+restaurant_id:101,
+
+restaurant_name:"Pizza Hut",
+
+city:"Bangalore",
+
+rating:4.5
+
+},
+
+{
+
+restaurant_id:102,
+
+restaurant_name:"Dominos",
+
+city:"Hyderabad",
+
+rating:4.3
+
+},
+
+{
+
+restaurant_id:103,
+
+restaurant_name:"Burger King",
+
+city:"Chennai",
+
+rating:4.4
+
+},
+
+{
+
+restaurant_id:104,
+
+restaurant_name:"KFC",
+
+city:"Pune",
+
+rating:4.2
+
+}
+
+]);
+
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6a34e3870c8d25409ae0e2a4'),
+    '1': ObjectId('6a34e3870c8d25409ae0e2a5'),
+    '2': ObjectId('6a34e3870c8d25409ae0e2a6'),
+    '3': ObjectId('6a34e3870c8d25409ae0e2a7')
+  }
+}
+db.menu.insertMany([
+
+{
+
+item_id:1,
+
+restaurant_id:101,
+
+item_name:"Veg Pizza",
+
+price:250
+
+},
+
+{
+
+item_id:2,
+
+restaurant_id:101,
+
+item_name:"Chicken Pizza",
+
+price:350
+
+},
+
+{
+
+item_id:3,
+
+restaurant_id:102,
+
+item_name:"Cheese Burst Pizza",
+
+price:300
+
+},
+
+{
+
+item_id:4,
+
+restaurant_id:103,
+
+item_name:"Veg Burger",
+
+price:180
+
+},
+
+{
+
+item_id:5,
+
+restaurant_id:104,
+
+item_name:"Chicken Bucket",
+
+price:550
+
+}
+
+]);
+
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6a34e3960c8d25409ae0e2a8'),
+    '1': ObjectId('6a34e3960c8d25409ae0e2a9'),
+    '2': ObjectId('6a34e3960c8d25409ae0e2aa'),
+    '3': ObjectId('6a34e3960c8d25409ae0e2ab'),
+    '4': ObjectId('6a34e3960c8d25409ae0e2ac')
+  }
+}
+db.orders.insertMany([
+
+{
+
+order_id:1001,
+
+customer_id:1,
+
+restaurant_id:101,
+
+items:[
+
+{
+
+item_name:"Veg Pizza",
+
+quantity:2,
+
+price:250
+
+}
+
+],
+
+total_amount:500,
+
+status:"Delivered"
+
+},
+
+{
+
+order_id:1002,
+
+customer_id:2,
+
+restaurant_id:102,
+
+items:[
+
+{
+
+item_name:"Cheese Burst Pizza",
+
+quantity:1,
+
+price:300
+
+}
+
+],
+
+total_amount:300,
+
+status:"Pending"
+
+},
+
+{
+
+order_id:1003,
+
+customer_id:3,
+
+restaurant_id:103,
+
+items:[
+
+{
+
+item_name:"Veg Burger",
+
+quantity:2,
+
+price:180
+
+}
+
+],
+
+total_amount:360,
+
+status:"Delivered"
+
+}
+
+]);
+
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6a34e3a90c8d25409ae0e2ad'),
+    '1': ObjectId('6a34e3a90c8d25409ae0e2ae'),
+    '2': ObjectId('6a34e3a90c8d25409ae0e2af')
+  }
+}
+db.payments.insertMany([
+
+{
+
+payment_id:501,
+
+order_id:1001,
+
+payment_method:"UPI",
+
+amount:500,
+
+status:"Success"
+
+},
+
+{
+
+payment_id:502,
+
+order_id:1002,
+
+payment_method:"Credit Card",
+
+amount:300,
+
+status:"Pending"
+
+},
+
+{
+
+payment_id:503,
+
+order_id:1003,
+
+payment_method:"Cash",
+
+amount:360,
+
+status:"Success"
+
+}
+
+]);
+
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6a34e3b70c8d25409ae0e2b0'),
+    '1': ObjectId('6a34e3b70c8d25409ae0e2b1'),
+    '2': ObjectId('6a34e3b70c8d25409ae0e2b2')
+  }
+}
+db.delivery_agents.insertMany([
+
+{
+
+agent_id:1,
+
+agent_name:"Kumar",
+
+city:"Bangalore",
+
+rating:4.8
+
+},
+
+{
+
+agent_id:2,
+
+agent_name:"Arjun",
+
+city:"Hyderabad",
+
+rating:4.6
+
+},
+
+{
+
+agent_id:3,
+
+agent_name:"Sneha",
+
+city:"Chennai",
+
+rating:4.9
+
+}
+
+]);
+
+
+
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6a34e3c30c8d25409ae0e2b3'),
+    '1': ObjectId('6a34e3c30c8d25409ae0e2b4'),
+    '2': ObjectId('6a34e3c30c8d25409ae0e2b5')
+  }
+}
+db.reviews.insertMany([
+
+{
+
+review_id:1,
+
+customer_id:1,
+
+restaurant_id:101,
+
+rating:5,
+
+comment:"Excellent service"
+
+},
+
+{
+
+review_id:2,
+
+customer_id:2,
+
+restaurant_id:102,
+
+rating:4,
+
+comment:"Good taste"
+
+},
+
+{
+
+review_id:3,
+
+customer_id:3,
+
+restaurant_id:103,
+
+rating:5,
+
+comment:"Very tasty"
+
+}
+
+]);
+
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6a34e3dc0c8d25409ae0e2b6'),
+    '1': ObjectId('6a34e3dc0c8d25409ae0e2b7'),
+    '2': ObjectId('6a34e3dc0c8d25409ae0e2b8')
+  }
+}
+db.customers.find();
+{
+  _id: ObjectId('6a34e3780c8d25409ae0e29f'),
+  customer_id: 1,
+  name: 'Saran',
+  email: 'saran@gmail.com',
+  phone: '9876543210',
+  city: 'Bangalore'
+}
+{
+  _id: ObjectId('6a34e3780c8d25409ae0e2a0'),
+  customer_id: 2,
+  name: 'Priya',
+  email: 'priya@gmail.com',
+  phone: '9876543211',
+  city: 'Hyderabad'
+}
+{
+  _id: ObjectId('6a34e3780c8d25409ae0e2a1'),
+  customer_id: 3,
+  name: 'Rahul',
+  email: 'rahul@gmail.com',
+  phone: '9876543212',
+  city: 'Chennai'
+}
+{
+  _id: ObjectId('6a34e3780c8d25409ae0e2a2'),
+  customer_id: 4,
+  name: 'Deepa',
+  email: 'deepa@gmail.com',
+  phone: '9876543213',
+  city: 'Pune'
+}
+{
+  _id: ObjectId('6a34e3780c8d25409ae0e2a3'),
+  customer_id: 5,
+  name: 'Anjali',
+  email: 'anjali@gmail.com',
+  phone: '9876543214',
+  city: 'Bangalore'
+}
+db.customers.findMany("Banglore")
+TypeError: db.customers.findMany is not a function
+db.customers.find({city:"Banglore"})
+db.customers.findMany("Bangalore")
+TypeError: db.customers.findMany is not a function
+db.customers.find({city:"Bangalore"})
+{
+  _id: ObjectId('6a34e3780c8d25409ae0e29f'),
+  customer_id: 1,
+  name: 'Saran',
+  email: 'saran@gmail.com',
+  phone: '9876543210',
+  city: 'Bangalore'
+}
+{
+  _id: ObjectId('6a34e3780c8d25409ae0e2a3'),
+  customer_id: 5,
+  name: 'Anjali',
+  email: 'anjali@gmail.com',
+  phone: '9876543214',
+  city: 'Bangalore'
+}
+db.cuatomers.find({city:{$nin:"Hyderabad"}})
+MongoServerError[BadValue]: $nin needs an array
+db.customers.find({city:{$nin:"Hyderabad"}})
+MongoServerError[BadValue]: $nin needs an array
+db.customers.find({city:{$nin:["Hyderabad"]}})
+{
+  _id: ObjectId('6a34e3780c8d25409ae0e29f'),
+  customer_id: 1,
+  name: 'Saran',
+  email: 'saran@gmail.com',
+  phone: '9876543210',
+  city: 'Bangalore'
+}
+{
+  _id: ObjectId('6a34e3780c8d25409ae0e2a1'),
+  customer_id: 3,
+  name: 'Rahul',
+  email: 'rahul@gmail.com',
+  phone: '9876543212',
+  city: 'Chennai'
+}
+{
+  _id: ObjectId('6a34e3780c8d25409ae0e2a2'),
+  customer_id: 4,
+  name: 'Deepa',
+  email: 'deepa@gmail.com',
+  phone: '9876543213',
+  city: 'Pune'
+}
+{
+  _id: ObjectId('6a34e3780c8d25409ae0e2a3'),
+  customer_id: 5,
+  name: 'Anjali',
+  email: 'anjali@gmail.com',
+  phone: '9876543214',
+  city: 'Bangalore'
+}
+db.customers.find({name:/^s/})
+db.customers.find({name:/^S/})
+{
+  _id: ObjectId('6a34e3780c8d25409ae0e29f'),
+  customer_id: 1,
+  name: 'Saran',
+  email: 'saran@gmail.com',
+  phone: '9876543210',
+  city: 'Bangalore'
+}
+db.customers.find({name:/a$/i})
+{
+  _id: ObjectId('6a34e3780c8d25409ae0e2a0'),
+  customer_id: 2,
+  name: 'Priya',
+  email: 'priya@gmail.com',
+  phone: '9876543211',
+  city: 'Hyderabad'
+}
+{
+  _id: ObjectId('6a34e3780c8d25409ae0e2a2'),
+  customer_id: 4,
+  name: 'Deepa',
+  email: 'deepa@gmail.com',
+  phone: '9876543213',
+  city: 'Pune'
+}
+db.customers.find({name:/ar/i})
+{
+  _id: ObjectId('6a34e3780c8d25409ae0e29f'),
+  customer_id: 1,
+  name: 'Saran',
+  email: 'saran@gmail.com',
+  phone: '9876543210',
+  city: 'Bangalore'
+}
+db.customers.find({city:{$or:["Bangalore","Chennai"})
+SyntaxError: Unexpected token, expected "," (1:51)
+
+> 1 | db.customers.find({city:{$or:["Bangalore","Chennai"})
+    |                                                    ^
+db.customers.find({city:{$or:["Bangalore","Chennai"]})
+SyntaxError: Unexpected token, expected "," (1:53)
+
+> 1 | db.customers.find({city:{$or:["Bangalore","Chennai"]})
+    |                                                      ^
+db.customers.find({ 
+  $or: [ 
+    { city: "Bangalore" }, 
+    { city: "Chennai" } 
+  ] 
+})
+{
+  _id: ObjectId('6a34e3780c8d25409ae0e29f'),
+  customer_id: 1,
+  name: 'Saran',
+  email: 'saran@gmail.com',
+  phone: '9876543210',
+  city: 'Bangalore'
+}
+{
+  _id: ObjectId('6a34e3780c8d25409ae0e2a1'),
+  customer_id: 3,
+  name: 'Rahul',
+  email: 'rahul@gmail.com',
+  phone: '9876543212',
+  city: 'Chennai'
+}
+{
+  _id: ObjectId('6a34e3780c8d25409ae0e2a3'),
+  customer_id: 5,
+  name: 'Anjali',
+  email: 'anjali@gmail.com',
+  phone: '9876543214',
+  city: 'Bangalore'
+}
+db.customers.find({ 
+  city: "Bangalore", 
+  name: /^S/i 
+})
+{
+  _id: ObjectId('6a34e3780c8d25409ae0e29f'),
+  customer_id: 1,
+  name: 'Saran',
+  email: 'saran@gmail.com',
+  phone: '9876543210',
+  city: 'Bangalore'
+}
+db.customers.find({city:{$in:["Bangalore","Hyderabad","Pune"]}})
+{
+  _id: ObjectId('6a34e3780c8d25409ae0e29f'),
+  customer_id: 1,
+  name: 'Saran',
+  email: 'saran@gmail.com',
+  phone: '9876543210',
+  city: 'Bangalore'
+}
+{
+  _id: ObjectId('6a34e3780c8d25409ae0e2a0'),
+  customer_id: 2,
+  name: 'Priya',
+  email: 'priya@gmail.com',
+  phone: '9876543211',
+  city: 'Hyderabad'
+}
+{
+  _id: ObjectId('6a34e3780c8d25409ae0e2a2'),
+  customer_id: 4,
+  name: 'Deepa',
+  email: 'deepa@gmail.com',
+  phone: '9876543213',
+  city: 'Pune'
+}
+{
+  _id: ObjectId('6a34e3780c8d25409ae0e2a3'),
+  customer_id: 5,
+  name: 'Anjali',
+  email: 'anjali@gmail.com',
+  phone: '9876543214',
+  city: 'Bangalore'
+}
+db.customers.find().sort({name:1})
+{
+  _id: ObjectId('6a34e3780c8d25409ae0e2a3'),
+  customer_id: 5,
+  name: 'Anjali',
+  email: 'anjali@gmail.com',
+  phone: '9876543214',
+  city: 'Bangalore'
+}
+{
+  _id: ObjectId('6a34e3780c8d25409ae0e2a2'),
+  customer_id: 4,
+  name: 'Deepa',
+  email: 'deepa@gmail.com',
+  phone: '9876543213',
+  city: 'Pune'
+}
+{
+  _id: ObjectId('6a34e3780c8d25409ae0e2a0'),
+  customer_id: 2,
+  name: 'Priya',
+  email: 'priya@gmail.com',
+  phone: '9876543211',
+  city: 'Hyderabad'
+}
+{
+  _id: ObjectId('6a34e3780c8d25409ae0e2a1'),
+  customer_id: 3,
+  name: 'Rahul',
+  email: 'rahul@gmail.com',
+  phone: '9876543212',
+  city: 'Chennai'
+}
+{
+  _id: ObjectId('6a34e3780c8d25409ae0e29f'),
+  customer_id: 1,
+  name: 'Saran',
+  email: 'saran@gmail.com',
+  phone: '9876543210',
+  city: 'Bangalore'
+}
+db.customers.countDocuments()
+5
+db.customers.countDocuments({city:"$city"})
+0
+db.customers.aggregate([$group:{_id:"$department",citycount:{$sum:1}}])
+SyntaxError: Unexpected token, expected "," (1:30)
+
+> 1 | db.customers.aggregate([$group:{_id:"$department",citycount:{$sum:1}}])
+    |                               ^
+db.customers.aggregate([{$group:{_id:"$department",citycount:{$sum:1}}}])
+{
+  _id: null,
+  citycount: 5
+}
+db.customers.aggregate([{$group:{_id:"$city",citycount:{$sum:1}}}])
+{
+  _id: 'Chennai',
+  citycount: 1
+}
+{
+  _id: 'Pune',
+  citycount: 1
+}
+{
+  _id: 'Hyderabad',
+  citycount: 1
+}
+{
+  _id: 'Bangalore',
+  citycount: 2
+}
+db.customers.aggregate([{$group:{_id:"$city",citycount:{$sum:1}}},{$max:"&cityvount"}])
+MongoServerError[AtlasError]: $max is not allowed or the syntax is incorrect, see the Atlas documentation for more information
+db.customers.aggregate([
+  {
+    $group: {
+      _id: "$city",
+      customerCount: { $sum: 1 }
+    }
+  },
+  {
+    $sort: { customerCount: -1 }
+  },
+  {
+    $limit: 1
+  }
+])
+{
+  _id: 'Bangalore',
+  customerCount: 2
+}
+db.customers.aggregate([
+  {
+    $group: {
+      _id: "$city",
+      customerCount: { $sum: 1 }
+    }
+  },
+  {
+    $match: {
+      customerCount: { $gt: 1 }
+    }
+  }
+])
+{
+  _id: 'Bangalore',
+  customerCount: 2
+}
+db.customers.find([{$group:{_id:"$City",cityCount:{$sum:1}}},{$sort:{cityCount:-1}}])
+MongoInvalidArgumentError: Query filter must be a plain object or ObjectId
+db.customers.aggregate([{$group:{_id:"$City",cityCount:{$sum:1}}},{$sort:{cityCount:-1}}])
+{
+  _id: null,
+  cityCount: 5
+}
+db.customers.aggregate([{$group:{_id:"$city",cityCount:{$sum:1}}},{$sort:{cityCount:-1}}])
+{
+  _id: 'Bangalore',
+  cityCount: 2
+}
+{
+  _id: 'Chennai',
+  cityCount: 1
+}
+{
+  _id: 'Pune',
+  cityCount: 1
+}
+{
+  _id: 'Hyderabad',
+  cityCount: 1
+}
+db.restaurants.find()
+{
+  _id: ObjectId('6a34e3870c8d25409ae0e2a4'),
+  restaurant_id: 101,
+  restaurant_name: 'Pizza Hut',
+  city: 'Bangalore',
+  rating: 4.5
+}
+{
+  _id: ObjectId('6a34e3870c8d25409ae0e2a5'),
+  restaurant_id: 102,
+  restaurant_name: 'Dominos',
+  city: 'Hyderabad',
+  rating: 4.3
+}
+{
+  _id: ObjectId('6a34e3870c8d25409ae0e2a6'),
+  restaurant_id: 103,
+  restaurant_name: 'Burger King',
+  city: 'Chennai',
+  rating: 4.4
+}
+{
+  _id: ObjectId('6a34e3870c8d25409ae0e2a7'),
+  restaurant_id: 104,
+  restaurant_name: 'KFC',
+  city: 'Pune',
+  rating: 4.2
+}
+db.restaurants.find({city:"Bangalore"})
+{
+  _id: ObjectId('6a34e3870c8d25409ae0e2a4'),
+  restaurant_id: 101,
+  restaurant_name: 'Pizza Hut',
+  city: 'Bangalore',
+  rating: 4.5
+}
+db.restaurants.find({rating:{$gt:4.3}})
+{
+  _id: ObjectId('6a34e3870c8d25409ae0e2a4'),
+  restaurant_id: 101,
+  restaurant_name: 'Pizza Hut',
+  city: 'Bangalore',
+  rating: 4.5
+}
+{
+  _id: ObjectId('6a34e3870c8d25409ae0e2a6'),
+  restaurant_id: 103,
+  restaurant_name: 'Burger King',
+  city: 'Chennai',
+  rating: 4.4
+}
+db.restaurants.find({rating:{$in:[4.2,4.5]}})
+{
+  _id: ObjectId('6a34e3870c8d25409ae0e2a4'),
+  restaurant_id: 101,
+  restaurant_name: 'Pizza Hut',
+  city: 'Bangalore',
+  rating: 4.5
+}
+{
+  _id: ObjectId('6a34e3870c8d25409ae0e2a7'),
+  restaurant_id: 104,
+  restaurant_name: 'KFC',
+  city: 'Pune',
+  rating: 4.2
+}
+db.restaurants.find({
+  rating: { $gte: 4.2, $lte: 4.5 }
+})
+{
+  _id: ObjectId('6a34e3870c8d25409ae0e2a4'),
+  restaurant_id: 101,
+  restaurant_name: 'Pizza Hut',
+  city: 'Bangalore',
+  rating: 4.5
+}
+{
+  _id: ObjectId('6a34e3870c8d25409ae0e2a5'),
+  restaurant_id: 102,
+  restaurant_name: 'Dominos',
+  city: 'Hyderabad',
+  rating: 4.3
+}
+{
+  _id: ObjectId('6a34e3870c8d25409ae0e2a6'),
+  restaurant_id: 103,
+  restaurant_name: 'Burger King',
+  city: 'Chennai',
+  rating: 4.4
+}
+{
+  _id: ObjectId('6a34e3870c8d25409ae0e2a7'),
+  restaurant_id: 104,
+  restaurant_name: 'KFC',
+  city: 'Pune',
+  rating: 4.2
+}
+db.restaurants.find({name:/^p/i})
+db.restaurants.find({restaurant_name:/^p/i})
+{
+  _id: ObjectId('6a34e3870c8d25409ae0e2a4'),
+  restaurant_id: 101,
+  restaurant_name: 'Pizza Hut',
+  city: 'Bangalore',
+  rating: 4.5
+}
+db.restaurants.find({restaurant_name:/king/i})
+{
+  _id: ObjectId('6a34e3870c8d25409ae0e2a6'),
+  restaurant_id: 103,
+  restaurant_name: 'Burger King',
+  city: 'Chennai',
+  rating: 4.4
+}
+db.restaurants.find({$or:[{city:"Chennai"},{city:"Bangalore"}]})
+{
+  _id: ObjectId('6a34e3870c8d25409ae0e2a4'),
+  restaurant_id: 101,
+  restaurant_name: 'Pizza Hut',
+  city: 'Bangalore',
+  rating: 4.5
+}
+{
+  _id: ObjectId('6a34e3870c8d25409ae0e2a6'),
+  restaurant_id: 103,
+  restaurant_name: 'Burger King',
+  city: 'Chennai',
+  rating: 4.4
+}
+db.restaurants.find({city:{$nin["Pune"]}})
+SyntaxError: Unexpected token, expected "," (1:31)
+
+> 1 | db.restaurants.find({city:{$nin["Pune"]}})
+    |                                ^
+db.restaurants.find({city:{$nin:["Pune"]}})
+{
+  _id: ObjectId('6a34e3870c8d25409ae0e2a4'),
+  restaurant_id: 101,
+  restaurant_name: 'Pizza Hut',
+  city: 'Bangalore',
+  rating: 4.5
+}
+{
+  _id: ObjectId('6a34e3870c8d25409ae0e2a5'),
+  restaurant_id: 102,
+  restaurant_name: 'Dominos',
+  city: 'Hyderabad',
+  rating: 4.3
+}
+{
+  _id: ObjectId('6a34e3870c8d25409ae0e2a6'),
+  restaurant_id: 103,
+  restaurant_name: 'Burger King',
+  city: 'Chennai',
+  rating: 4.4
+}
+db.restaurants.find().sort({rating:-1})
+{
+  _id: ObjectId('6a34e3870c8d25409ae0e2a4'),
+  restaurant_id: 101,
+  restaurant_name: 'Pizza Hut',
+  city: 'Bangalore',
+  rating: 4.5
+}
+{
+  _id: ObjectId('6a34e3870c8d25409ae0e2a6'),
+  restaurant_id: 103,
+  restaurant_name: 'Burger King',
+  city: 'Chennai',
+  rating: 4.4
+}
+{
+  _id: ObjectId('6a34e3870c8d25409ae0e2a5'),
+  restaurant_id: 102,
+  restaurant_name: 'Dominos',
+  city: 'Hyderabad',
+  rating: 4.3
+}
+{
+  _id: ObjectId('6a34e3870c8d25409ae0e2a7'),
+  restaurant_id: 104,
+  restaurant_name: 'KFC',
+  city: 'Pune',
+  rating: 4.2
+}
+db.restaurants.find().sort({rating:1}).limit(3)
+{
+  _id: ObjectId('6a34e3870c8d25409ae0e2a7'),
+  restaurant_id: 104,
+  restaurant_name: 'KFC',
+  city: 'Pune',
+  rating: 4.2
+}
+{
+  _id: ObjectId('6a34e3870c8d25409ae0e2a5'),
+  restaurant_id: 102,
+  restaurant_name: 'Dominos',
+  city: 'Hyderabad',
+  rating: 4.3
+}
+{
+  _id: ObjectId('6a34e3870c8d25409ae0e2a6'),
+  restaurant_id: 103,
+  restaurant_name: 'Burger King',
+  city: 'Chennai',
+  rating: 4.4
+}
+db.restaurants.aggregate([{$group:{_id:null,avgrat:{$avg:"rating"}}}])
+{
+  _id: null,
+  avgrat: null
+}
+db.restaurants.aggregate([{$group:{_id:"rating",avgrat:{$avg:"rating"}}}])
+{
+  _id: 'rating',
+  avgrat: null
+}
+db.restaurants.aggregate([{$group:{_id:"rating",avgrat:{$avg:"$rating"}}}])
+{
+  _id: 'rating',
+  avgrat: 4.35
+}
+db.restaurants.aggregate([{$group:{_id:"$name",maxrat:{$max:"$rating"}}}])
+{
+  _id: null,
+  maxrat: 4.5
+}
+db.restaurants.aggregate([{$group:{_id:"$restaurant_name",maxrat:{$max:"$rating"}}}])
+{
+  _id: 'KFC',
+  maxrat: 4.2
+}
+{
+  _id: 'Pizza Hut',
+  maxrat: 4.5
+}
+{
+  _id: 'Burger King',
+  maxrat: 4.4
+}
+{
+  _id: 'Dominos',
+  maxrat: 4.3
+}
+db.restaurants.aggregate([{$group:{_id:null,minrat:{$min:"$rating"}}}])
+{
+  _id: null,
+  minrat: 4.2
+}
+db.restaurants.aggregate([{$group:{_id:"$city",sumcount:{$sum:1}}}])
+{
+  _id: 'Chennai',
+  sumcount: 1
+}
+{
+  _id: 'Bangalore',
+  sumcount: 1
+}
+{
+  _id: 'Hyderabad',
+  sumcount: 1
+}
+{
+  _id: 'Pune',
+  sumcount: 1
+}
+db.restaurants.aggregate([
+  {
+    $group: {
+      _id: "$city",
+      restaurantCount: { $sum: 1 }
+    }
+  },
+  {
+    $sort: { restaurantCount: -1 }
+  }
+])
+{
+  _id: 'Bangalore',
+  restaurantCount: 1
+}
+{
+  _id: 'Pune',
+  restaurantCount: 1
+}
+{
+  _id: 'Hyderabad',
+  restaurantCount: 1
+}
+{
+  _id: 'Chennai',
+  restaurantCount: 1
+}
+db.restaurants.aggregate([{$group:{_id:"$city",restcount:{$sum:1}},$match:{restcount:{$gt:1}}}])
+MongoServerError[Location40323]: A pipeline stage specification object must contain exactly one field.
+db.restaurants.aggregate([{$group:{_id:"$city",restcount:{$sum:1}}},$match:{restcount:{$gt:1}}}])
+SyntaxError: Unexpected token, expected "," (1:74)
+
+> 1 | db.restaurants.aggregate([{$group:{_id:"$city",restcount:{$sum:1}}},$match:{restcount:{$gt:1}}}])
+    |                                                                           ^
+db.restaurants.aggregate([{$group:{_id:"$city",restcount:{$sum:1}}},{$match:{restcount:{$gt:1}}}])
+db.restaurants.aggregate([
+  {
+    $group: {
+      _id: "$city",
+      restaurantCount: { $sum: 1 }
+    }
+  },
+  {
+    $match: {
+      restaurantCount: { $gt: 1 }
+    }
+  }
+])
+db.restaurants.aggregate([
+  {
+    $group: {
+      _id: "$city",
+      restaurantCount: { $sum: 1 }
+    }
+  },
+  {
+    $match: {
+      restaurantCount: { $gte: 1 }
+    }
+  }
+])
+{
+  _id: 'Bangalore',
+  restaurantCount: 1
+}
+{
+  _id: 'Pune',
+  restaurantCount: 1
+}
+{
+  _id: 'Hyderabad',
+  restaurantCount: 1
+}
+{
+  _id: 'Chennai',
+  restaurantCount: 1
+}
+db.items.find()
+db.menu.find()
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2a8'),
+  item_id: 1,
+  restaurant_id: 101,
+  item_name: 'Veg Pizza',
+  price: 250
+}
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2a9'),
+  item_id: 2,
+  restaurant_id: 101,
+  item_name: 'Chicken Pizza',
+  price: 350
+}
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2aa'),
+  item_id: 3,
+  restaurant_id: 102,
+  item_name: 'Cheese Burst Pizza',
+  price: 300
+}
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2ab'),
+  item_id: 4,
+  restaurant_id: 103,
+  item_name: 'Veg Burger',
+  price: 180
+}
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2ac'),
+  item_id: 5,
+  restaurant_id: 104,
+  item_name: 'Chicken Bucket',
+  price: 550
+}
+db.menu.find({price:{$gt:250}})
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2a9'),
+  item_id: 2,
+  restaurant_id: 101,
+  item_name: 'Chicken Pizza',
+  price: 350
+}
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2aa'),
+  item_id: 3,
+  restaurant_id: 102,
+  item_name: 'Cheese Burst Pizza',
+  price: 300
+}
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2ac'),
+  item_id: 5,
+  restaurant_id: 104,
+  item_name: 'Chicken Bucket',
+  price: 550
+}
+db.menu.find({price:{$gt:200,$lt:400}})
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2a8'),
+  item_id: 1,
+  restaurant_id: 101,
+  item_name: 'Veg Pizza',
+  price: 250
+}
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2a9'),
+  item_id: 2,
+  restaurant_id: 101,
+  item_name: 'Chicken Pizza',
+  price: 350
+}
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2aa'),
+  item_id: 3,
+  restaurant_id: 102,
+  item_name: 'Cheese Burst Pizza',
+  price: 300
+}
+db.menu.find({$match:{restaurant_id:101}})
+MongoServerError[BadValue]: unknown top level operator: $match. If you have a field name that starts with a '$' symbol, consider using $getField or $setField.
+db.menu.aggregate([{$match:{restaurant_id:101}}])
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2a8'),
+  item_id: 1,
+  restaurant_id: 101,
+  item_name: 'Veg Pizza',
+  price: 250
+}
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2a9'),
+  item_id: 2,
+  restaurant_id: 101,
+  item_name: 'Chicken Pizza',
+  price: 350
+}
+db.menu.find({name:/^c/i})
+db.menu.find({item_name:/^c/i})
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2a9'),
+  item_id: 2,
+  restaurant_id: 101,
+  item_name: 'Chicken Pizza',
+  price: 350
+}
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2aa'),
+  item_id: 3,
+  restaurant_id: 102,
+  item_name: 'Cheese Burst Pizza',
+  price: 300
+}
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2ac'),
+  item_id: 5,
+  restaurant_id: 104,
+  item_name: 'Chicken Bucket',
+  price: 550
+}
+db.menu.find({item_name:/pizza/i})
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2a8'),
+  item_id: 1,
+  restaurant_id: 101,
+  item_name: 'Veg Pizza',
+  price: 250
+}
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2a9'),
+  item_id: 2,
+  restaurant_id: 101,
+  item_name: 'Chicken Pizza',
+  price: 350
+}
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2aa'),
+  item_id: 3,
+  restaurant_id: 102,
+  item_name: 'Cheese Burst Pizza',
+  price: 300
+}
+db.menu.find().sort({price:1})
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2ab'),
+  item_id: 4,
+  restaurant_id: 103,
+  item_name: 'Veg Burger',
+  price: 180
+}
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2a8'),
+  item_id: 1,
+  restaurant_id: 101,
+  item_name: 'Veg Pizza',
+  price: 250
+}
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2aa'),
+  item_id: 3,
+  restaurant_id: 102,
+  item_name: 'Cheese Burst Pizza',
+  price: 300
+}
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2a9'),
+  item_id: 2,
+  restaurant_id: 101,
+  item_name: 'Chicken Pizza',
+  price: 350
+}
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2ac'),
+  item_id: 5,
+  restaurant_id: 104,
+  item_name: 'Chicken Bucket',
+  price: 550
+}
+db.menu.find().sort({price:-1}).limit(3)
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2ac'),
+  item_id: 5,
+  restaurant_id: 104,
+  item_name: 'Chicken Bucket',
+  price: 550
+}
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2a9'),
+  item_id: 2,
+  restaurant_id: 101,
+  item_name: 'Chicken Pizza',
+  price: 350
+}
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2aa'),
+  item_id: 3,
+  restaurant_id: 102,
+  item_name: 'Cheese Burst Pizza',
+  price: 300
+}
+db.menu.find({price:{$lt:300}})
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2a8'),
+  item_id: 1,
+  restaurant_id: 101,
+  item_name: 'Veg Pizza',
+  price: 250
+}
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2ab'),
+  item_id: 4,
+  restaurant_id: 103,
+  item_name: 'Veg Burger',
+  price: 180
+}
+db.menu.find({price:{$ne:350}})
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2a8'),
+  item_id: 1,
+  restaurant_id: 101,
+  item_name: 'Veg Pizza',
+  price: 250
+}
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2aa'),
+  item_id: 3,
+  restaurant_id: 102,
+  item_name: 'Cheese Burst Pizza',
+  price: 300
+}
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2ab'),
+  item_id: 4,
+  restaurant_id: 103,
+  item_name: 'Veg Burger',
+  price: 180
+}
+{
+  _id: ObjectId('6a34e3960c8d25409ae0e2ac'),
+  item_id: 5,
+  restaurant_id: 104,
+  item_name: 'Chicken Bucket',
+  price: 550
+}
+db.menu.aggregate([{$group:{_id:null,avgprice:{$avg:"$price"}}}])
+{
+  _id: null,
+  avgprice: 326
+}
+db.menu.aggregate([{$group:{_id:null,maxprice:{$max:"$price"}}}])
+{
+  _id: null,
+  maxprice: 550
+}
+db.menu.aggregate([{$group:{_id:null,minprice:{$min:"$price"}}}])
+{
+  _id: null,
+  minprice: 180
+}
+db.menu.aggregate([{$group:{_id:"$restaurant_id",itemcount:{$sum:1}}}])
+{
+  _id: 103,
+  itemcount: 1
+}
+{
+  _id: 101,
+  itemcount: 2
+}
+{
+  _id: 102,
+  itemcount: 1
+}
+{
+  _id: 104,
+  itemcount: 1
+}
+db.orders.find()
+{
+  _id: ObjectId('6a34e3a90c8d25409ae0e2ad'),
+  order_id: 1001,
+  customer_id: 1,
+  restaurant_id: 101,
+  items: [
+    {
+      item_name: 'Veg Pizza',
+      quantity: 2,
+      price: 250
+    }
+  ],
+  total_amount: 500,
+  status: 'Delivered'
+}
+{
+  _id: ObjectId('6a34e3a90c8d25409ae0e2ae'),
+  order_id: 1002,
+  customer_id: 2,
+  restaurant_id: 102,
+  items: [
+    {
+      item_name: 'Cheese Burst Pizza',
+      quantity: 1,
+      price: 300
+    }
+  ],
+  total_amount: 300,
+  status: 'Pending'
+}
+{
+  _id: ObjectId('6a34e3a90c8d25409ae0e2af'),
+  order_id: 1003,
+  customer_id: 3,
+  restaurant_id: 103,
+  items: [
+    {
+      item_name: 'Veg Burger',
+      quantity: 2,
+      price: 180
+    }
+  ],
+  total_amount: 360,
+  status: 'Delivered'
+}
+db.orders.find({status:"delivered"})
+db.orders.find({status:"Delivered"})
+{
+  _id: ObjectId('6a34e3a90c8d25409ae0e2ad'),
+  order_id: 1001,
+  customer_id: 1,
+  restaurant_id: 101,
+  items: [
+    {
+      item_name: 'Veg Pizza',
+      quantity: 2,
+      price: 250
+    }
+  ],
+  total_amount: 500,
+  status: 'Delivered'
+}
+{
+  _id: ObjectId('6a34e3a90c8d25409ae0e2af'),
+  order_id: 1003,
+  customer_id: 3,
+  restaurant_id: 103,
+  items: [
+    {
+      item_name: 'Veg Burger',
+      quantity: 2,
+      price: 180
+    }
+  ],
+  total_amount: 360,
+  status: 'Delivered'
+}
+db.orders.find({status:"Pending"})
+{
+  _id: ObjectId('6a34e3a90c8d25409ae0e2ae'),
+  order_id: 1002,
+  customer_id: 2,
+  restaurant_id: 102,
+  items: [
+    {
+      item_name: 'Cheese Burst Pizza',
+      quantity: 1,
+      price: 300
+    }
+  ],
+  total_amount: 300,
+  status: 'Pending'
+}
+db.orders.find({total_amout:{$gt:400}})
+db.orders.find({total_amout:{$gt:300}})
+db.orders.find({total_amount:{$gt:300}})
+{
+  _id: ObjectId('6a34e3a90c8d25409ae0e2ad'),
+  order_id: 1001,
+  customer_id: 1,
+  restaurant_id: 101,
+  items: [
+    {
+      item_name: 'Veg Pizza',
+      quantity: 2,
+      price: 250
+    }
+  ],
+  total_amount: 500,
+  status: 'Delivered'
+}
+{
+  _id: ObjectId('6a34e3a90c8d25409ae0e2af'),
+  order_id: 1003,
+  customer_id: 3,
+  restaurant_id: 103,
+  items: [
+    {
+      item_name: 'Veg Burger',
+      quantity: 2,
+      price: 180
+    }
+  ],
+  total_amount: 360,
+  status: 'Delivered'
+}
+db.orders.find({total_amount:{$gt:400})
+SyntaxError: Unexpected token, expected "," (1:38)
+
+> 1 | db.orders.find({total_amount:{$gt:400})
+    |                                       ^
+db.orders.find({total_amount:{$gt:400}})
+{
+  _id: ObjectId('6a34e3a90c8d25409ae0e2ad'),
+  order_id: 1001,
+  customer_id: 1,
+  restaurant_id: 101,
+  items: [
+    {
+      item_name: 'Veg Pizza',
+      quantity: 2,
+      price: 250
+    }
+  ],
+  total_amount: 500,
+  status: 'Delivered'
+}
+db.orders.find({total_amount:{$gt:300,$lt:600}})
+{
+  _id: ObjectId('6a34e3a90c8d25409ae0e2ad'),
+  order_id: 1001,
+  customer_id: 1,
+  restaurant_id: 101,
+  items: [
+    {
+      item_name: 'Veg Pizza',
+      quantity: 2,
+      price: 250
+    }
+  ],
+  total_amount: 500,
+  status: 'Delivered'
+}
+{
+  _id: ObjectId('6a34e3a90c8d25409ae0e2af'),
+  order_id: 1003,
+  customer_id: 3,
+  restaurant_id: 103,
+  items: [
+    {
+      item_name: 'Veg Burger',
+      quantity: 2,
+      price: 180
+    }
+  ],
+  total_amount: 360,
+  status: 'Delivered'
+}
+db.orders.find({$match:{customer_id:1}})
+MongoServerError[BadValue]: unknown top level operator: $match. If you have a field name that starts with a '$' symbol, consider using $getField or $setField.
+db.orders.aggregate([{$match:{customer_id:1}}])
+{
+  _id: ObjectId('6a34e3a90c8d25409ae0e2ad'),
+  order_id: 1001,
+  customer_id: 1,
+  restaurant_id: 101,
+  items: [
+    {
+      item_name: 'Veg Pizza',
+      quantity: 2,
+      price: 250
+    }
+  ],
+  total_amount: 500,
+  status: 'Delivered'
+}
+db.orders.find().sort({total_amount:-1})
+{
+  _id: ObjectId('6a34e3a90c8d25409ae0e2ad'),
+  order_id: 1001,
+  customer_id: 1,
+  restaurant_id: 101,
+  items: [
+    {
+      item_name: 'Veg Pizza',
+      quantity: 2,
+      price: 250
+    }
+  ],
+  total_amount: 500,
+  status: 'Delivered'
+}
+{
+  _id: ObjectId('6a34e3a90c8d25409ae0e2af'),
+  order_id: 1003,
+  customer_id: 3,
+  restaurant_id: 103,
+  items: [
+    {
+      item_name: 'Veg Burger',
+      quantity: 2,
+      price: 180
+    }
+  ],
+  total_amount: 360,
+  status: 'Delivered'
+}
+{
+  _id: ObjectId('6a34e3a90c8d25409ae0e2ae'),
+  order_id: 1002,
+  customer_id: 2,
+  restaurant_id: 102,
+  items: [
+    {
+      item_name: 'Cheese Burst Pizza',
+      quantity: 1,
+      price: 300
+    }
+  ],
+  total_amount: 300,
+  status: 'Pending'
+}
+db.orders.find().sort({total_amount:1}).limit(3)
+{
+  _id: ObjectId('6a34e3a90c8d25409ae0e2ae'),
+  order_id: 1002,
+  customer_id: 2,
+  restaurant_id: 102,
+  items: [
+    {
+      item_name: 'Cheese Burst Pizza',
+      quantity: 1,
+      price: 300
+    }
+  ],
+  total_amount: 300,
+  status: 'Pending'
+}
+{
+  _id: ObjectId('6a34e3a90c8d25409ae0e2af'),
+  order_id: 1003,
+  customer_id: 3,
+  restaurant_id: 103,
+  items: [
+    {
+      item_name: 'Veg Burger',
+      quantity: 2,
+      price: 180
+    }
+  ],
+  total_amount: 360,
+  status: 'Delivered'
+}
+{
+  _id: ObjectId('6a34e3a90c8d25409ae0e2ad'),
+  order_id: 1001,
+  customer_id: 1,
+  restaurant_id: 101,
+  items: [
+    {
+      item_name: 'Veg Pizza',
+      quantity: 2,
+      price: 250
+    }
+  ],
+  total_amount: 500,
+  status: 'Delivered'
+}
+db.orders.find({status:{$nin:["Delivered"]}})
+{
+  _id: ObjectId('6a34e3a90c8d25409ae0e2ae'),
+  order_id: 1002,
+  customer_id: 2,
+  restaurant_id: 102,
+  items: [
+    {
+      item_name: 'Cheese Burst Pizza',
+      quantity: 1,
+      price: 300
+    }
+  ],
+  total_amount: 300,
+  status: 'Pending'
+}
+db.students.find({{total_amount:{$gt:300},{status:"Delivered"}}})
+SyntaxError: Unexpected token (1:18)
+
+> 1 | db.students.find({{total_amount:{$gt:300},{status:"Delivered"}}})
+    |                   ^
+db.students.find([{total_amount:{$gt:300},{status:"Delivered"}}])
+SyntaxError: Unexpected token (1:42)
+
+> 1 | db.students.find([{total_amount:{$gt:300},{status:"Delivered"}}])
+    |                                           ^
+db.students.find({{total_amount:{$gt:300},{status:"Delivered"}})
+SyntaxError: Unexpected token (1:18)
+
+> 1 | db.students.find({{total_amount:{$gt:300},{status:"Delivered"}})
+    |                   ^
+db.students.find({total_amount:{$gt:300},{status:"Delivered"})
+SyntaxError: Unexpected token (1:41)
+
+> 1 | db.students.find({total_amount:{$gt:300},{status:"Delivered"})
+    |                                          ^
+db.students.find({total_amount:{$gt:300},status:"Delivered"})
+db.students.find({total_amount:{$gt:300},status:"Delivered"})
+db.students.find({ total_amount: { $gt: 300 }, status: "Delivered" })
+db.orders.find({ total_amount: { $gt: 300 }, status: "Delivered" })
+{
+  _id: ObjectId('6a34e3a90c8d25409ae0e2ad'),
+  order_id: 1001,
+  customer_id: 1,
+  restaurant_id: 101,
+  items: [
+    {
+      item_name: 'Veg Pizza',
+      quantity: 2,
+      price: 250
+    }
+  ],
+  total_amount: 500,
+  status: 'Delivered'
+}
+{
+  _id: ObjectId('6a34e3a90c8d25409ae0e2af'),
+  order_id: 1003,
+  customer_id: 3,
+  restaurant_id: 103,
+  items: [
+    {
+      item_name: 'Veg Burger',
+      quantity: 2,
+      price: 180
+    }
+  ],
+  total_amount: 360,
+  status: 'Delivered'
+}
+db.orders.aggregate([{$group:{_id:null,total_revenue:{$sum:"$total_amount"}}}])
+{
+  _id: null,
+  total_revenue: 1160
+}
+db.orders.aggregate([{$group:{_id:null,average_revenue:{$avg:"$total_amount"}}}])
+{
+  _id: null,
+  average_revenue: 386.6666666666667
+}
+db.orders.aggregate([{$group:{_id:null,max_revenue:{$max:"$total_amount"}}}])
+{
+  _id: null,
+  max_revenue: 500
+}
+db.orders.aggregate([{$group:{_id:null,min_revenue:{$min:"$total_amount"}}}])
+{
+  _id: null,
+  min_revenue: 300
+}
+db.orders.aggregate([{$group:{_id:"$status",count:{$sum:1}}}])
+{
+  _id: 'Delivered',
+  count: 2
+}
+{
+  _id: 'Pending',
+  count: 1
+}
+db.orders.aggregate([{$group:{_id:"$status",count:{$sum:1}}},{count:{$gt:1}}])
+MongoServerError[AtlasError]: count is not allowed or the syntax is incorrect, see the Atlas documentation for more information
+db.orders.aggregate([{$group:{_id:"$status",count:{$sum:1}}},{$match:{count:{$gt:1}}}])
+{
+  _id: 'Delivered',
+  count: 2
+}
+db.orders.aggregate([{$group:{_id:"$status",count:{$sum:1}}},{$sort:{count:-1}}])
+{
+  _id: 'Delivered',
+  count: 2
+}
+{
+  _id: 'Pending',
+  count: 1
+}
+db.orders.aggregate([{$group:{_id:null,total_amount:{$sum:"$total_amount"}}},{$match:{status:"Delivered"}}])
+db.orders.aggregate([
+  {
+    $match: { status: "Delivered" }
+  },
+  {
+    $group: {
+      _id: null,
+      total_amount: { $sum: "$total_amount" }
+    }
+  }
+])
+{
+  _id: null,
+  total_amount: 860
+}
+db.orders.aggregate([{$group:{_id:"$customer_id",cusorder:{$sum:1}}}])
+{
+  _id: 1,
+  cusorder: 1
+}
+{
+  _id: 2,
+  cusorder: 1
+}
+{
+  _id: 3,
+  cusorder: 1
+}
+db.payments.find()
+{
+  _id: ObjectId('6a34e3b70c8d25409ae0e2b0'),
+  payment_id: 501,
+  order_id: 1001,
+  payment_method: 'UPI',
+  amount: 500,
+  status: 'Success'
+}
+{
+  _id: ObjectId('6a34e3b70c8d25409ae0e2b1'),
+  payment_id: 502,
+  order_id: 1002,
+  payment_method: 'Credit Card',
+  amount: 300,
+  status: 'Pending'
+}
+{
+  _id: ObjectId('6a34e3b70c8d25409ae0e2b2'),
+  payment_id: 503,
+  order_id: 1003,
+  payment_method: 'Cash',
+  amount: 360,
+  status: 'Success'
+}
+db.payments.find({status:"Success"})
+{
+  _id: ObjectId('6a34e3b70c8d25409ae0e2b0'),
+  payment_id: 501,
+  order_id: 1001,
+  payment_method: 'UPI',
+  amount: 500,
+  status: 'Success'
+}
+{
+  _id: ObjectId('6a34e3b70c8d25409ae0e2b2'),
+  payment_id: 503,
+  order_id: 1003,
+  payment_method: 'Cash',
+  amount: 360,
+  status: 'Success'
+}
+db.payments.find({status:"Pending"})
+{
+  _id: ObjectId('6a34e3b70c8d25409ae0e2b1'),
+  payment_id: 502,
+  order_id: 1002,
+  payment_method: 'Credit Card',
+  amount: 300,
+  status: 'Pending'
+}
+db.payments.find({payment_method:"UPI"})
+{
+  _id: ObjectId('6a34e3b70c8d25409ae0e2b0'),
+  payment_id: 501,
+  order_id: 1001,
+  payment_method: 'UPI',
+  amount: 500,
+  status: 'Success'
+}
+db.payments.find({amount:{$gt:300}})
+{
+  _id: ObjectId('6a34e3b70c8d25409ae0e2b0'),
+  payment_id: 501,
+  order_id: 1001,
+  payment_method: 'UPI',
+  amount: 500,
+  status: 'Success'
+}
+{
+  _id: ObjectId('6a34e3b70c8d25409ae0e2b2'),
+  payment_id: 503,
+  order_id: 1003,
+  payment_method: 'Cash',
+  amount: 360,
+  status: 'Success'
+}
+db.payments.find.sort({amount:1})
+TypeError: db.payments.find.sort is not a function
+db.payments.find().sort({amount:1})
+{
+  _id: ObjectId('6a34e3b70c8d25409ae0e2b1'),
+  payment_id: 502,
+  order_id: 1002,
+  payment_method: 'Credit Card',
+  amount: 300,
+  status: 'Pending'
+}
+{
+  _id: ObjectId('6a34e3b70c8d25409ae0e2b2'),
+  payment_id: 503,
+  order_id: 1003,
+  payment_method: 'Cash',
+  amount: 360,
+  status: 'Success'
+}
+{
+  _id: ObjectId('6a34e3b70c8d25409ae0e2b0'),
+  payment_id: 501,
+  order_id: 1001,
+  payment_method: 'UPI',
+  amount: 500,
+  status: 'Success'
+}
+db.payments.find().sort({amount:1}).limit(3)
+{
+  _id: ObjectId('6a34e3b70c8d25409ae0e2b1'),
+  payment_id: 502,
+  order_id: 1002,
+  payment_method: 'Credit Card',
+  amount: 300,
+  status: 'Pending'
+}
+{
+  _id: ObjectId('6a34e3b70c8d25409ae0e2b2'),
+  payment_id: 503,
+  order_id: 1003,
+  payment_method: 'Cash',
+  amount: 360,
+  status: 'Success'
+}
+{
+  _id: ObjectId('6a34e3b70c8d25409ae0e2b0'),
+  payment_id: 501,
+  order_id: 1001,
+  payment_method: 'UPI',
+  amount: 500,
+  status: 'Success'
+}
+db.payments.find({amount:{$nin:["Success"]})
+SyntaxError: Unexpected token, expected "," (1:43)
+
+> 1 | db.payments.find({amount:{$nin:["Success"]})
+    |                                            ^
+db.payments.find({amount:{$nin:["Success"]}})
+{
+  _id: ObjectId('6a34e3b70c8d25409ae0e2b0'),
+  payment_id: 501,
+  order_id: 1001,
+  payment_method: 'UPI',
+  amount: 500,
+  status: 'Success'
+}
+{
+  _id: ObjectId('6a34e3b70c8d25409ae0e2b1'),
+  payment_id: 502,
+  order_id: 1002,
+  payment_method: 'Credit Card',
+  amount: 300,
+  status: 'Pending'
+}
+{
+  _id: ObjectId('6a34e3b70c8d25409ae0e2b2'),
+  payment_id: 503,
+  order_id: 1003,
+  payment_method: 'Cash',
+  amount: 360,
+  status: 'Success'
+}
+db.payments.find({status:{$nin:["Success"]}})
+{
+  _id: ObjectId('6a34e3b70c8d25409ae0e2b1'),
+  payment_id: 502,
+  order_id: 1002,
+  payment_method: 'Credit Card',
+  amount: 300,
+  status: 'Pending'
+}
+db.payments.find({$or:{payment_method:"Cash"},{payment_method:"UPI"}})
+SyntaxError: Unexpected token (1:46)
+
+> 1 | db.payments.find({$or:{payment_method:"Cash"},{payment_method:"UPI"}})
+    |                                               ^
+db.payments.find({$or:[{payment_method:"Cash"},{payment_method:"UPI"}]})
+{
+  _id: ObjectId('6a34e3b70c8d25409ae0e2b0'),
+  payment_id: 501,
+  order_id: 1001,
+  payment_method: 'UPI',
+  amount: 500,
+  status: 'Success'
+}
+{
+  _id: ObjectId('6a34e3b70c8d25409ae0e2b2'),
+  payment_id: 503,
+  order_id: 1003,
+  payment_method: 'Cash',
+  amount: 360,
+  status: 'Success'
+}
+db.payments.find({amount:{$gt:300,$lte:500}})
+{
+  _id: ObjectId('6a34e3b70c8d25409ae0e2b0'),
+  payment_id: 501,
+  order_id: 1001,
+  payment_method: 'UPI',
+  amount: 500,
+  status: 'Success'
+}
+{
+  _id: ObjectId('6a34e3b70c8d25409ae0e2b2'),
+  payment_id: 503,
+  order_id: 1003,
+  payment_method: 'Cash',
+  amount: 360,
+  status: 'Success'
+}
+db.payments.aggregate({$group:{_id:null,total_amount:{$sum:"$amount"}}})
+{
+  _id: null,
+  total_amount: 1160
+}
+db.payments.aggregate({$group:{_id:null,avg_amount:{$avg:"$amount"}}})
+{
+  _id: null,
+  avg_amount: 386.6666666666667
+}
+db.payments.aggregate({$group:{_id:null,max_amount:{$max:"$amount"}}})
+{
+  _id: null,
+  max_amount: 500
+}
+db.payments.aggregate({$group:{_id:null,min_amount:{$min:"$amount"}}})
+{
+  _id: null,
+  min_amount: 300
+}
+db.payments.aggregate({$group:{_id:"$payment_method",count:{$sum:1}}})
+{
+  _id: 'Credit Card',
+  count: 1
+}
+{
+  _id: 'UPI',
+  count: 1
+}
+{
+  _id: 'Cash',
+  count: 1
+}
+db.payments.aggregate({$group:{_id:"$status",count:{$sum:1}}})
+{
+  _id: 'Success',
+  count: 2
+}
+{
+  _id: 'Pending',
+  count: 1
+}
+db.payments.aggregate({$group:{_id:"$status",count:{$sum:1}}},{$match:{count:{$gt:1}}})
+{
+  _id: 'Success',
+  count: 2
+}
+db.payments.aggregate({$group:{_id:"$payment_method",sum:{$sum:"amount"}}},{$match:{payment_method:"UPI"}})
+db.payments.aggregate({$match:{payment_method:"UPI"}},{$group:{_id:"$payment_method",sum:{$sum:"amount"}}})
+{
+  _id: 'UPI',
+  sum: 0
+}
+db.payments.aggregate({$match:{payment_method:"UPI"}},{$group:{_id:"$payment_method",sum:{$sum:"$amount"}}})
+{
+  _id: 'UPI',
+  sum: 500
+}
+db.payments.aggregate({$match:{payment_method:"Credit card"}},{$group:{_id:"$payment_method",avg:{$avg:"$amount"}}})
+db.payments.aggregate([{$match:{payment_method:"Credit card"}},{$group:{_id:"$payment_method",avg:{$avg:"$amount"}}}])
+db.payments.aggregate([
+  {
+    $match: { payment_method: "Credit card" }
+  },
+  {
+    $group: {
+      _id: "$payment_method",
+      avg: { $avg: "$amount" }
+    }
+  }
+])
+db.payments.aggregate([{$match:{payment_method:"Credit card"}},{$group:{_id:null,avg:{$avg:"$amount"}}}])
+db.payments.aggregate([
+  {
+    $match: { payment_method: "Credit card" }
+  },
+  {
+    $group: {
+      _id:null,
+      avg: { $avg: "$amount" }
+    }
+  }
+])
+db.payments.aggregate([
+  {
+    $match: { payment_method: "Credit card" }
+  },
+  {
+    $group: {
+      _id: null,
+      averageAmount: { $avg: "$amount" }
+    }
+  }
+])
+db.payments.aggregate([
+  {
+    $group: {
+      _id: "$payment_method",
+      totalAmount: { $sum: "$amount" }
+    }
+  },
+  {
+    $sort: { totalAmount: -1 }
+  }
+])
+{
+  _id: 'UPI',
+  totalAmount: 500
+}
+{
+  _id: 'Cash',
+  totalAmount: 360
+}
+{
+  _id: 'Credit Card',
+  totalAmount: 300
+}
+show collections
+customers
+delivery_agents
+menu
+orders
+payments
+restaurants
+reviews
+db.delivery_agents.find()
+{
+  _id: ObjectId('6a34e3c30c8d25409ae0e2b3'),
+  agent_id: 1,
+  agent_name: 'Kumar',
+  city: 'Bangalore',
+  rating: 4.8
+}
+{
+  _id: ObjectId('6a34e3c30c8d25409ae0e2b4'),
+  agent_id: 2,
+  agent_name: 'Arjun',
+  city: 'Hyderabad',
+  rating: 4.6
+}
+{
+  _id: ObjectId('6a34e3c30c8d25409ae0e2b5'),
+  agent_id: 3,
+  agent_name: 'Sneha',
+  city: 'Chennai',
+  rating: 4.9
+}
+db.delivery_agents.find({city:"Bangalore"})
+{
+  _id: ObjectId('6a34e3c30c8d25409ae0e2b3'),
+  agent_id: 1,
+  agent_name: 'Kumar',
+  city: 'Bangalore',
+  rating: 4.8
+}
+db.delivery_agents.find({rating:{$gt:4.7}})
+{
+  _id: ObjectId('6a34e3c30c8d25409ae0e2b3'),
+  agent_id: 1,
+  agent_name: 'Kumar',
+  city: 'Bangalore',
+  rating: 4.8
+}
+{
+  _id: ObjectId('6a34e3c30c8d25409ae0e2b5'),
+  agent_id: 3,
+  agent_name: 'Sneha',
+  city: 'Chennai',
+  rating: 4.9
+}
+db.delivery_agents.find({name:/^a/i})
+db.delivery_agents.find({agent_name:/^a/i})
+{
+  _id: ObjectId('6a34e3c30c8d25409ae0e2b4'),
+  agent_id: 2,
+  agent_name: 'Arjun',
+  city: 'Hyderabad',
+  rating: 4.6
+}
+db.delivery_agents.find().sort({rating:1})
+{
+  _id: ObjectId('6a34e3c30c8d25409ae0e2b4'),
+  agent_id: 2,
+  agent_name: 'Arjun',
+  city: 'Hyderabad',
+  rating: 4.6
+}
+{
+  _id: ObjectId('6a34e3c30c8d25409ae0e2b3'),
+  agent_id: 1,
+  agent_name: 'Kumar',
+  city: 'Bangalore',
+  rating: 4.8
+}
+{
+  _id: ObjectId('6a34e3c30c8d25409ae0e2b5'),
+  agent_id: 3,
+  agent_name: 'Sneha',
+  city: 'Chennai',
+  rating: 4.9
+}
+db.delivery_agents.find({$group:{_id:null,avgagent:{$avg:"$rating"}})
+SyntaxError: Unexpected token, expected "," (1:68)
+
+> 1 | db.delivery_agents.find({$group:{_id:null,avgagent:{$avg:"$rating"}})
+    |                                                                     ^
+db.delivery_agents.find({$group:{_id:null,avgagent:{$avg:"$rating"}}})
+MongoServerError[BadValue]: unknown top level operator: $group. If you have a field name that starts with a '$' symbol, consider using $getField or $setField.
+db.delivery_agents.aggregate([{$group:{_id:null,avgagent:{$avg:"$rating"}}}])
+{
+  _id: null,
+  avgagent: 4.766666666666667
+}
+db.delivery_agents.aggregate([{$group:{_id:null,maxagent:{$max:"$rating"}}}])
+{
+  _id: null,
+  maxagent: 4.9
+}
+db.delivery_agents.aggregate([{$group:{_id:null,minagent:{$min:"$rating"}}}])
+{
+  _id: null,
+  minagent: 4.6
+}
+db.delivery_agents.aggregate([{$group:{_id:"$city",citycount:{$sum:1}}}])
+{
+  _id: 'Bangalore',
+  citycount: 1
+}
+{
+  _id: 'Hyderabad',
+  citycount: 1
+}
+{
+  _id: 'Chennai',
+  citycount: 1
+}
+db.delivery_agents.aggregate([{$group:{_id:"$agent_id",agentcount:{$sum:1}}},{$match:{count:{$gt:1}}}])
+ 
+db.delivery_agents.aggregate([{$group:{_id:"$agent_id",agentcount:{$sum:1}}},{$match:{agentcount:{$gt:1}}}])
+db.delivery_agents.aggregate([{$group:{_id:"$city",agentcount:{$sum:1}}},{$match:{agentcount:{$gt:1}}}])
+db.delivery_agents.aggregate([
+  { $group: { _id: "$city", agentcount: { $sum: 1 } } },
+  { $match: { agentcount: { $gt: 1 } } }
+])
+db.delivery_agents.aggregate([
+  {
+    $group: {
+      _id: "$city",
+      agentCount: { $sum: 1 }
+    }
+  },
+  {
+    $match: {
+      agentCount: { $gt: 1 }
+    }
+  }
+])
+db.delivery_agents.aggregate([
+  {
+    $group: {
+      _id: { $toLower: "$city" },
+      agentCount: { $sum: 1 }
+    }
+  },
+  {
+    $match: {
+      agentCount: { $gt: 1 }
+    }
+  }
+])
+db.delivery_agents.aggregate([
+  {
+    $group: {
+      _id: "$city",
+      agentCount: { $sum: 1 }
+    }
+  }
+])
+{
+  _id: 'Chennai',
+  agentCount: 1
+}
+{
+  _id: 'Bangalore',
+  agentCount: 1
+}
+{
+  _id: 'Hyderabad',
+  agentCount: 1
+}
+db.reviews.find()
+{
+  _id: ObjectId('6a34e3dc0c8d25409ae0e2b6'),
+  review_id: 1,
+  customer_id: 1,
+  restaurant_id: 101,
+  rating: 5,
+  comment: 'Excellent service'
+}
+{
+  _id: ObjectId('6a34e3dc0c8d25409ae0e2b7'),
+  review_id: 2,
+  customer_id: 2,
+  restaurant_id: 102,
+  rating: 4,
+  comment: 'Good taste'
+}
+{
+  _id: ObjectId('6a34e3dc0c8d25409ae0e2b8'),
+  review_id: 3,
+  customer_id: 3,
+  restaurant_id: 103,
+  rating: 5,
+  comment: 'Very tasty'
+}
+db.reviews.find({rating:{$eq:5}})
+{
+  _id: ObjectId('6a34e3dc0c8d25409ae0e2b6'),
+  review_id: 1,
+  customer_id: 1,
+  restaurant_id: 101,
+  rating: 5,
+  comment: 'Excellent service'
+}
+{
+  _id: ObjectId('6a34e3dc0c8d25409ae0e2b8'),
+  review_id: 3,
+  customer_id: 3,
+  restaurant_id: 103,
+  rating: 5,
+  comment: 'Very tasty'
+}
+db.reviews.find({rating:{$gt:5}})
+db.reviews.find({rating:{$gt:4})
+SyntaxError: Unexpected token, expected "," (1:31)
+
+> 1 | db.reviews.find({rating:{$gt:4})
+    |                                ^
+db.reviews.find({rating:{$gt:4}})
+{
+  _id: ObjectId('6a34e3dc0c8d25409ae0e2b6'),
+  review_id: 1,
+  customer_id: 1,
+  restaurant_id: 101,
+  rating: 5,
+  comment: 'Excellent service'
+}
+{
+  _id: ObjectId('6a34e3dc0c8d25409ae0e2b8'),
+  review_id: 3,
+  customer_id: 3,
+  restaurant_id: 103,
+  rating: 5,
+  comment: 'Very tasty'
+}
+db.reviews.find({customer_id:{$eq:1}})
+{
+  _id: ObjectId('6a34e3dc0c8d25409ae0e2b6'),
+  review_id: 1,
+  customer_id: 1,
+  restaurant_id: 101,
+  rating: 5,
+  comment: 'Excellent service'
+}
+db.reviews.find().sort({rating:1})
+{
+  _id: ObjectId('6a34e3dc0c8d25409ae0e2b7'),
+  review_id: 2,
+  customer_id: 2,
+  restaurant_id: 102,
+  rating: 4,
+  comment: 'Good taste'
+}
+{
+  _id: ObjectId('6a34e3dc0c8d25409ae0e2b6'),
+  review_id: 1,
+  customer_id: 1,
+  restaurant_id: 101,
+  rating: 5,
+  comment: 'Excellent service'
+}
+{
+  _id: ObjectId('6a34e3dc0c8d25409ae0e2b8'),
+  review_id: 3,
+  customer_id: 3,
+  restaurant_id: 103,
+  rating: 5,
+  comment: 'Very tasty'
+}
+db.reviews.find({$group:{id:null,avgrating:{$avg:"$rating"}}})
+MongoServerError[BadValue]: unknown top level operator: $group. If you have a field name that starts with a '$' symbol, consider using $getField or $setField.
+db.reviews.aggregate([{$group:{id:null,avgrating:{$avg:"$rating"}}}])
+MongoServerError[Location40234]: The field 'id' must be an accumulator object
+db.reviews.aggregate([{$group:{_id:null,avgrating:{$avg:"$rating"}}}])
+{
+  _id: null,
+  avgrating: 4.666666666666667
+}
+db.reviews.aggregate([{$group:{_id:null,maxrating:{$max:"$rating"}}}])
+{
+  _id: null,
+  maxrating: 5
+}
+db.reviews.aggregate([{$group:{_id:null,minrating:{$min:"$rating"}}}])
+{
+  _id: null,
+  minrating: 4
+}
+db.reviews.aggregate([{$group:{_id:"$restaurant_id",count:{$sum:1}}}])
+{
+  _id: 102,
+  count: 1
+}
+{
+  _id: 103,
+  count: 1
+}
+{
+  _id: 101,
+  count: 1
+}
+db.reviews.aggregate([{$group:{_id:"$restaurant_id",count:{$sum:1}}},{$match:{count:{$gt:1}}}])
+db.reviews.aggregate([{$group:{_id:"$restaurant_id",avg:{$avg:"$rating"}}}])
+{
+  _id: 102,
+  avg: 4
+}
+{
+  _id: 103,
+  avg: 5
+}
+{
+  _id: 101,
+  avg: 5
+}
+db.reviews.aggregate([{$group:{_id:"$restaurant_id",avg:{$avg:"$rating"}}},{$sort:1}])
+MongoServerError[Location15973]: the $sort key specification must be an object
+db.reviews.aggregate([{$group:{_id:"$restaurant_id",avg:{$avg:"$rating"}},{$sort:1}}])
+SyntaxError: Unexpected token (1:74)
+
+> 1 | db.reviews.aggregate([{$group:{_id:"$restaurant_id",avg:{$avg:"$rating"}},{$sort:1}}])
+    |                                                                           ^
+db.reviews.aggregate([
+  {
+    $group: {
+      _id: "$restaurant_id",
+      avgRating: { $avg: "$rating" }
+    }
+  },
+  {
+    $sort: { avgRating: -1 } // Use -1 for highest rating first, or 1 for lowest first
+  }
+])
+{
+  _id: 101,
+  avgRating: 5
+}
+{
+  _id: 103,
+  avgRating: 5
+}
+{
+  _id: 102,
+  avgRating: 4
+}
+db.reviews.countDocuments({rating:5})
+2
+db.reviews.aggregate([
+  {
+    $group: {
+      _id: "$rating",
+      sum: { $sum: 1 }
+    }
+  }
+])
+{
+  _id: 4,
+  sum: 1
+}
+{
+  _id: 5,
+  sum: 2
+}
+db.reviews.aggregate([
+  {
+    $group: {
+      _id: "$rating",
+      sum: { $sum: 1 }
+    }
+  }
+])
+{
+  _id: 5,
+  sum: 2
+}
+{
+  _id: 4,
+  sum: 1
+}
+db.reviews.aggregate([
+  {
+    $group: {
+      _id: "$rating",
+      sum: { $sum: 1 }
+    }
+  },{$match:{sum:{$gt:1}}}
+])
+{
+  _id: 5,
+  sum: 2
+}
+db.restaurants.find()
+{
+  _id: ObjectId('6a34e3870c8d25409ae0e2a4'),
+  restaurant_id: 101,
+  restaurant_name: 'Pizza Hut',
+  city: 'Bangalore',
+  rating: 4.5
+}
+{
+  _id: ObjectId('6a34e3870c8d25409ae0e2a5'),
+  restaurant_id: 102,
+  restaurant_name: 'Dominos',
+  city: 'Hyderabad',
+  rating: 4.3
+}
+{
+  _id: ObjectId('6a34e3870c8d25409ae0e2a6'),
+  restaurant_id: 103,
+  restaurant_name: 'Burger King',
+  city: 'Chennai',
+  rating: 4.4
+}
+{
+  _id: ObjectId('6a34e3870c8d25409ae0e2a7'),
+  restaurant_id: 104,
+  restaurant_name: 'KFC',
+  city: 'Pune',
+  rating: 4.2
+}
+db.restaurants.aggregate([{$group:{id:"$restaurant_name",maxrevenue:{$max:"$amount"}}}])
+MongoServerError[Location40234]: The field 'id' must be an accumulator object
+db.restaurants.aggregate([{$group:{_id:"$restaurant_name",maxrevenue:{$max:"$amount"}}}])
+{
+  _id: 'Dominos',
+  maxrevenue: null
+}
+{
+  _id: 'KFC',
+  maxrevenue: null
+}
+{
+  _id: 'Pizza Hut',
+  maxrevenue: null
+}
+{
+  _id: 'Burger King',
+  maxrevenue: null
+}
+db.orders.aggregate([
+  {
+    $group: {
+      _id: "$restaurant_id",
+      totalRevenue: { $sum: "$total_amount" }
+    }
+  },
+  {
+    $sort: { totalRevenue: -1 }
+  },
+  {
+    $limit: 1
+  }
+])
+{
+  _id: 101,
+  totalRevenue: 500
+}
+db.orders.aggregate([
+  {
+    $group: {
+      _id: "$customer_id",
+      orderCount: { $sum: 1 }
+    }
+  },
+  {
+    $sort: { orderCount: -1 }
+  },
+  {
+    $limit: 1
+  }
+])
+{
+  _id: 1,
+  orderCount: 1
+}
+db.payments.aggregate([
+  {
+    $group: {
+      _id: "$payment_method",
+      usageCount: { $sum: 1 }
+    }
+  },
+  {
+    $sort: { usageCount: -1 }
+  },
+  {
+    $limit: 1
+  }
+])
+{
+  _id: 'UPI',
+  usageCount: 1
+}
+db.customers.aggregate([
+  { $group: { _id: "$city", customerCount: { $sum: 1 } } },
+  { $sort: { customerCount: -1 } },
+  { $limit: 1 }
+])
+{
+  _id: 'Bangalore',
+  customerCount: 2
+}
+db.restaurants.aggregate([
+  { $group: { _id: "$city", restaurantCount: { $sum: 1 } } },
+  { $sort: { restaurantCount: -1 } },
+  { $limit: 1 }
+])
+{
+  _id: 'Chennai',
+  restaurantCount: 1
+}
+db.reviews.aggregate([
+  { $group: { _id: "$restaurant_id", avgRating: { $avg: "$rating" } } },
+  { $sort: { avgRating: -1 } },
+  { $limit: 3 }
+])
+{
+  _id: 101,
+  avgRating: 5
+}
+{
+  _id: 103,
+  avgRating: 5
+}
+{
+  _id: 102,
+  avgRating: 4
+}
+db.orders.aggregate([
+  { $group: { _id: "$customer_id", orderCount: { $sum: 1 } } },
+  { $sort: { orderCount: -1 } },
+  { $limit: 5 }
+])
+{
+  _id: 1,
+  orderCount: 1
+}
+{
+  _id: 2,
+  orderCount: 1
+}
+{
+  _id: 3,
+  orderCount: 1
+}
+db.orders.aggregate([
+  {
+    $group: {
+      _id: null,
+      totalOrders: { $sum: 1 },
+      deliveredOrders: {
+        $sum: { $cond: [ { $eq: ["$status", "Delivered"] }, 1, 0 ] }
+      }
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      deliveryPercentage: { 
+        $multiply: [ { $divide: ["$deliveredOrders", "$totalOrders"] }, 100 ] 
+      }
+    }
+  }
+])
+{
+  deliveryPercentage: 66.66666666666666
+}
+db.orders.aggregate([
+  {
+    $group: {
+      _id: "$city",
+      averageOrderAmount: { $avg: "$total_amount" }
+    }
+  },
+  {
+    $sort: { averageOrderAmount: -1 }
+  }
+])
+{
+  _id: null,
+  averageOrderAmount: 386.6666666666667
+}
+Atlas atlas-13hcgx-shard-0 [primary] food_delivery_db
+Selection deleted
+
+
