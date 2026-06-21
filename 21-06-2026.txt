@@ -1,0 +1,240 @@
+CREATE DATABASE FacultyTimetableDB;
+USE FacultyTimetableDB;
+
+CREATE TABLE Departments(
+ department_id INT PRIMARY KEY,
+ department_name VARCHAR(50),
+ hod_name VARCHAR(50)
+);
+
+INSERT INTO Departments VALUES
+(1,'CSE','Dr. Kumar'),
+(2,'ECE','Dr. Ramesh'),
+(3,'EEE','Dr. Priya');
+
+CREATE TABLE Faculty(
+ faculty_id INT PRIMARY KEY,
+ faculty_name VARCHAR(50),
+ designation VARCHAR(50),
+ department_id INT,
+ email VARCHAR(100),
+ phone_number VARCHAR(15),
+ FOREIGN KEY(department_id) REFERENCES Departments(department_id)
+);
+
+INSERT INTO Faculty VALUES
+(101,'Dr. Saran','Assistant Professor',1,'saran@gmail.com','9876543210'),
+(102,'Dr. Ravi','Professor',2,'ravi@gmail.com','9876543211'),
+(103,'Dr. Meena','Assistant Professor',1,'meena@gmail.com','9876543212');
+
+CREATE TABLE Subjects(
+ subject_id INT PRIMARY KEY,
+ subject_name VARCHAR(50),
+ semester INT,
+ credits INT,
+ department_id INT,
+ FOREIGN KEY(department_id) REFERENCES Departments(department_id)
+);
+
+INSERT INTO Subjects VALUES
+(201,'DBMS',5,4,1),
+(202,'Operating Systems',5,4,1),
+(203,'Digital Electronics',3,3,2);
+
+CREATE TABLE Classes(
+ class_id INT PRIMARY KEY,
+ year INT,
+ semester INT,
+ section CHAR(1),
+ department_id INT,
+ FOREIGN KEY(department_id) REFERENCES Departments(department_id)
+);
+
+INSERT INTO Classes VALUES
+(1,3,5,'A',1),
+(2,3,5,'B',1),
+(3,2,3,'A',2);
+
+CREATE TABLE Rooms(
+ room_id INT PRIMARY KEY,
+ room_number VARCHAR(20),
+ capacity INT,
+ room_type VARCHAR(20)
+);
+
+INSERT INTO Rooms VALUES
+(1,'R101',60,'Theory'),
+(2,'R102',40,'Lab'),
+(3,'R103',70,'Theory');
+
+CREATE TABLE Time_Slots(
+ slot_id INT PRIMARY KEY,
+ start_time TIME,
+ end_time TIME
+);
+
+INSERT INTO Time_Slots VALUES
+(1,'09:00:00','10:00:00'),
+(2,'10:00:00','11:00:00'),
+(3,'11:00:00','12:00:00');
+
+CREATE TABLE Days(
+ day_id INT PRIMARY KEY,
+ day_name VARCHAR(20)
+);
+
+INSERT INTO Days VALUES
+(1,'Monday'),(2,'Tuesday'),(3,'Wednesday'),(4,'Thursday'),(5,'Friday');
+
+CREATE TABLE Faculty_Subjects(
+ allocation_id INT PRIMARY KEY,
+ faculty_id INT,
+ subject_id INT,
+ FOREIGN KEY(faculty_id) REFERENCES Faculty(faculty_id),
+ FOREIGN KEY(subject_id) REFERENCES Subjects(subject_id)
+);
+
+INSERT INTO Faculty_Subjects VALUES
+(1,101,201),(2,103,202),(3,102,203);
+
+CREATE TABLE Timetable(
+ timetable_id INT PRIMARY KEY,
+ faculty_id INT,
+ subject_id INT,
+ class_id INT,
+ room_id INT,
+ day_id INT,
+ slot_id INT,
+ FOREIGN KEY(faculty_id) REFERENCES Faculty(faculty_id),
+ FOREIGN KEY(subject_id) REFERENCES Subjects(subject_id),
+ FOREIGN KEY(class_id) REFERENCES Classes(class_id),
+ FOREIGN KEY(room_id) REFERENCES Rooms(room_id),
+ FOREIGN KEY(day_id) REFERENCES Days(day_id),
+ FOREIGN KEY(slot_id) REFERENCES Time_Slots(slot_id)
+);
+
+INSERT INTO Timetable VALUES
+(1,101,201,1,1,1,1),
+(2,103,202,2,3,2,2),
+(3,102,203,3,2,3,3);
+
+CREATE TABLE Faculty_Workload(
+ workload_id INT PRIMARY KEY,
+ faculty_id INT,
+ semester INT,
+ total_hours INT,
+ FOREIGN KEY(faculty_id) REFERENCES Faculty(faculty_id)
+);
+
+INSERT INTO Faculty_Workload VALUES
+(1,101,5,18),(2,102,3,15),(3,103,5,16);
+
+CREATE TABLE Attendance_Hours(
+ attendance_id INT PRIMARY KEY,
+ faculty_id INT,
+ subject_id INT,
+ date DATE,
+ hours_taken INT,
+ FOREIGN KEY(faculty_id) REFERENCES Faculty(faculty_id),
+ FOREIGN KEY(subject_id) REFERENCES Subjects(subject_id)
+);
+
+INSERT INTO Attendance_Hours VALUES
+(1,101,201,'2026-06-20',2),
+(2,102,203,'2026-06-20',3),
+(3,103,202,'2026-06-20',2);
+
+CREATE TABLE Notifications(
+ notification_id INT PRIMARY KEY,
+ faculty_id INT,
+ message VARCHAR(200),
+ date DATE,
+ FOREIGN KEY(faculty_id) REFERENCES Faculty(faculty_id)
+);
+
+INSERT INTO Notifications VALUES
+(1,101,'Class shifted to R103','2026-06-21'),
+(2,102,'Meeting at 2 PM','2026-06-21');
+
+-- BASIC QUERIES
+SELECT * FROM Departments;
+SELECT * FROM Faculty;
+SELECT * FROM Subjects;
+SELECT * FROM Classes;
+SELECT * FROM Rooms;
+SELECT * FROM Timetable;
+
+SELECT faculty_name,email FROM Faculty;
+SELECT * FROM Faculty WHERE designation='Professor';
+SELECT * FROM Subjects WHERE semester=5;
+SELECT * FROM Rooms WHERE capacity>50;
+SELECT * FROM Faculty ORDER BY faculty_name;
+SELECT * FROM Subjects ORDER BY credits DESC;
+SELECT COUNT(*) AS TotalFaculty FROM Faculty;
+SELECT AVG(total_hours) FROM Faculty_Workload;
+SELECT MAX(capacity) FROM Rooms;
+SELECT MIN(capacity) FROM Rooms;
+SELECT SUM(total_hours) FROM Faculty_Workload;
+SELECT department_id,COUNT(*) FROM Faculty GROUP BY department_id;
+SELECT semester,AVG(credits) FROM Subjects GROUP BY semester;
+
+-- JOINS
+SELECT f.faculty_name,s.subject_name
+FROM Faculty f
+JOIN Faculty_Subjects fs ON f.faculty_id=fs.faculty_id
+JOIN Subjects s ON fs.subject_id=s.subject_id;
+
+SELECT f.faculty_name,d.department_name
+FROM Faculty f
+JOIN Departments d ON f.department_id=d.department_id;
+
+SELECT t.timetable_id,f.faculty_name,s.subject_name,r.room_number,dy.day_name
+FROM Timetable t
+JOIN Faculty f ON t.faculty_id=f.faculty_id
+JOIN Subjects s ON t.subject_id=s.subject_id
+JOIN Rooms r ON t.room_id=r.room_id
+JOIN Days dy ON t.day_id=dy.day_id;
+
+-- VIEW
+CREATE VIEW FacultyDetails AS
+SELECT faculty_name,email,designation
+FROM Faculty;
+
+SELECT * FROM FacultyDetails;
+
+-- PROCEDURE
+DELIMITER //
+CREATE PROCEDURE ShowFaculty()
+BEGIN
+SELECT * FROM Faculty;
+END //
+DELIMITER ;
+
+CALL ShowFaculty();
+
+-- TRIGGER
+DELIMITER //
+CREATE TRIGGER workload_check
+BEFORE INSERT ON Faculty_Workload
+FOR EACH ROW
+BEGIN
+IF NEW.total_hours>40 THEN
+SIGNAL SQLSTATE '45000'
+SET MESSAGE_TEXT='Workload exceeds limit';
+END IF;
+END //
+DELIMITER ;
+
+-- INDEX
+CREATE INDEX idx_faculty_name
+ON Faculty(faculty_name);
+
+-- UPDATE
+UPDATE Faculty
+SET designation='Senior Professor'
+WHERE faculty_id=102;
+
+-- DELETE
+DELETE FROM Notifications
+WHERE notification_id=2;
+ project 4
