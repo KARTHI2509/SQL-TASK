@@ -1,0 +1,288 @@
+CREATE DATABASE College_Canteen;
+USE College_Canteen;
+CREATE TABLE Students(
+student_id INT PRIMARY KEY,
+student_name VARCHAR(50),
+department VARCHAR(30),
+year INT,
+phone_number VARCHAR(15)
+);
+CREATE TABLE Categories(
+category_id INT PRIMARY KEY,
+category_name VARCHAR(30)
+);
+CREATE TABLE Food_Items(
+food_id INT PRIMARY KEY,
+food_name VARCHAR(50),
+category_id INT,
+price INT,
+availability BOOLEAN,
+FOREIGN KEY(category_id) REFERENCES Categories(category_id)
+);
+CREATE TABLE Orders(
+order_id INT PRIMARY KEY,
+student_id INT,
+order_date DATE,
+total_amount INT,
+status VARCHAR(20),
+FOREIGN KEY(student_id) REFERENCES Students(student_id)
+);
+CREATE TABLE Order_Details(
+order_detail_id INT PRIMARY KEY,
+order_id INT,
+food_id INT,
+quantity INT,
+price INT,
+FOREIGN KEY(order_id) REFERENCES Orders(order_id),
+FOREIGN KEY(food_id) REFERENCES Food_Items(food_id)
+);
+CREATE TABLE Payments(
+payment_id INT PRIMARY KEY,
+order_id INT,
+payment_method VARCHAR(20),
+amount INT,
+payment_date DATE,
+FOREIGN KEY(order_id) REFERENCES Orders(order_id)
+);
+CREATE TABLE Inventory(
+inventory_id INT PRIMARY KEY,
+item_name VARCHAR(50),
+quantity INT,
+unit VARCHAR(20),
+minimum_stock INT
+);
+CREATE TABLE Suppliers(
+supplier_id INT PRIMARY KEY,
+supplier_name VARCHAR(50),
+phone VARCHAR(15),
+address VARCHAR(100)
+);
+CREATE TABLE Purchases(
+purchase_id INT PRIMARY KEY,
+supplier_id INT,
+purchase_date DATE,
+total_cost INT,
+FOREIGN KEY(supplier_id) REFERENCES Suppliers(supplier_id)
+);
+CREATE TABLE Purchase_Details(
+purchase_detail_id INT PRIMARY KEY,
+purchase_id INT,
+inventory_id INT,
+quantity INT,
+cost INT,
+FOREIGN KEY(purchase_id) REFERENCES Purchases(purchase_id),
+FOREIGN KEY(inventory_id) REFERENCES Inventory(inventory_id)
+);
+CREATE TABLE Staff(
+staff_id INT PRIMARY KEY,
+staff_name VARCHAR(50),
+position VARCHAR(30),
+salary INT,
+phone VARCHAR(15)
+);
+CREATE TABLE Feedback(
+feedback_id INT PRIMARY KEY,
+student_id INT,
+rating INT,
+comments VARCHAR(100),
+feedback_date DATE,
+FOREIGN KEY(student_id) REFERENCES Students(student_id)
+);
+INSERT INTO Students VALUES
+(1,'Saran','CSE',3,'9876543210');
+INSERT INTO Food_Items VALUES
+(101,'Veg Burger',3,60,TRUE);
+INSERT INTO Orders VALUES
+(1001,1,'2026-06-21',140,'Delivered');
+INSERT INTO Food_Items VALUES
+(101,'Veg Burger',3,60,TRUE),
+(102,'Coffee',4,20,TRUE);
+
+INSERT INTO Order_Details VALUES
+(1,1001,101,2,60),
+(2,1001,102,1,20);
+INSERT INTO Payments VALUES
+(501,1001,'UPI',140,'2026-06-21');
+INSERT INTO Suppliers VALUES
+(301,'Fresh Foods','9876500000','Chennai');
+INSERT INTO Purchases VALUES
+(401,301,'2026-06-20',5000);
+INSERT INTO Purchase_Details VALUES
+(1,401,201,20,2000);
+SELECT * FROM Students;
+SELECT * FROM Food_Items;
+SELECT * FROM Orders;
+SELECT * FROM Payments;
+SELECT * FROM Inventory
+WHERE quantity < minimum_stock;
+SELECT order_date, SUM(total_amount)
+FROM Orders
+GROUP BY order_date;
+SELECT MONTH(order_date), SUM(total_amount)
+FROM Orders
+GROUP BY MONTH(order_date);
+SELECT Students.student_name, Orders.order_id, Orders.total_amount
+FROM Students
+JOIN Orders
+ON Students.student_id = Orders.student_id;
+SELECT Students.student_name, Feedback.rating, Feedback.comments
+FROM Students
+JOIN Feedback
+ON Students.student_id = Feedback.student_id;
+
+
+
+use college_canteen
+db.students.insertMany([
+{
+  _id: 1,
+  student_name: "Saran",
+  department: "CSE",
+  year: 3,
+  phone_number: "9876543210"
+},
+{
+  _id: 2,
+  student_name: "Karthik",
+  department: "ECE",
+  year: 2,
+  phone_number: "9876543211"
+}
+]);
+db.categories.insertMany([
+{ _id: 1, category_name: "Breakfast" },
+{ _id: 2, category_name: "Lunch" },
+{ _id: 3, category_name: "Snacks" },
+{ _id: 4, category_name: "Beverages" },
+{ _id: 5, category_name: "Desserts" }
+]);
+db.food_items.insertMany([
+{
+  _id: 101,
+  food_name: "Veg Burger",
+  category_id: 3,
+  price: 60,
+  availability: true
+},
+{
+  _id: 102,
+  food_name: "Coffee",
+  category_id: 4,
+  price: 20,
+  availability: true
+},
+{
+  _id: 103,
+  food_name: "Dosa",
+  category_id: 1,
+  price: 40,
+  availability: true
+}
+]);
+db.orders.insertOne({
+  _id: 1001,
+  student_id: 1,
+  order_date: "2026-06-21",
+  items: [
+    {
+      food_id: 101,
+      food_name: "Veg Burger",
+      quantity: 2,
+      price: 60
+    },
+    {
+      food_id: 102,
+      food_name: "Coffee",
+      quantity: 1,
+      price: 20
+    }
+  ],
+  total_amount: 140,
+  status: "Delivered"
+});
+db.payments.insertOne({
+  _id: 501,
+  order_id: 1001,
+  payment_method: "UPI",
+  amount: 140,
+  payment_date: "2026-06-21"
+});
+db.inventory.insertMany([
+{
+  _id: 201,
+  item_name: "Bread",
+  quantity: 50,
+  unit: "Pieces",
+  minimum_stock: 10
+},
+{
+  _id: 202,
+  item_name: "Coffee Powder",
+  quantity: 20,
+  unit: "Kg",
+  minimum_stock: 5
+}
+]);
+db.suppliers.insertOne({
+  _id: 301,
+  supplier_name: "Fresh Foods",
+  phone: "9876500000",
+  address: "Chennai"
+});
+db.purchases.insertOne({
+  _id: 401,
+  supplier_id: 301,
+  purchase_date: "2026-06-20",
+  total_cost: 5000,
+  items: [
+    {
+      inventory_id: 201,
+      quantity: 20,
+      cost: 2000
+    }
+  ]
+});
+db.staff.insertOne({
+  _id: 1,
+  staff_name: "Ravi",
+  position: "Cashier",
+  salary: 15000,
+  phone: "9998887776"
+});
+db.feedback.insertOne({
+  _id: 1,
+  student_id: 1,
+  rating: 5,
+  comments: "Good Food",
+  feedback_date: "2026-06-21"
+});
+db.students.find()
+db.food_items.find({ availability: true })
+db.orders.find()
+db.orders.find({ student_id: 1 })
+db.payments.find()
+db.inventory.find({
+  $expr: { $lt: ["$quantity", "$minimum_stock"] }
+})
+db.suppliers.find()
+db.orders.aggregate([
+{
+  $group: {
+    _id: "$order_date",
+    total_sales: { $sum: "$total_amount" }
+  }
+}
+]);
+db.orders.aggregate([
+{
+  $group: {
+    _id: { $substr: ["$order_date", 0, 7] },
+    total_sales: { $sum: "$total_amount" }
+  }
+}
+]);
+db.orders.updateOne(
+  { _id: 1001 },
+  { $set: { status: "Ready" } }
+);
+db.food_items.deleteOne({ _id: 103 })
