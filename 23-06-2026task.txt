@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS TASKS</title>
+    <style>h1{color:red;}p{color:blue;}p{font-size:18px;font-family:Arial;}
+        #form{background-color:lightgray; width:300px;}
+        table, th, td {
+            border: 1px solid black; 
+        }
+        th, td {
+            padding: 10px;         
+        }
+        th {
+            background-color: gray; 
+        }
+    </style></head>
+<body>
+    <h1 style="color:blue;">Welcome to CSS</h1>
+    <p style="font-size:20px;color:green;">This is a paragraph.</p>
+    <button style="background-color:orange;color:white;">Click Me</button>
+    <h1 style="color:red;">MITS</h1>
+    <h2 style="color:purple;">CSS is fun!</h2>
+    <h3 style="color:teal;">Let's learn CSS together.</h3>
+    <table border="1" style="background-color:yellow;text-align:center;">
+        <tr>
+            <th style="color:red;">Name</th>
+            <th style="color:red;">Age</th>
+            <th style="color:red;">City</th>
+        </tr>
+        <tr>
+            <td style="color:blue;">John</td>
+            <td style="color:blue;">25</td>
+            <td style="color:blue;">New York</td>
+        </tr>
+        </table>
+        <h1>hi
+        </h1>
+        <p>this is good</p>
+        <p>this is good</p>
+        <p>this is</p>
+
+        <p>this is good</p>
+        <form id="form" >
+        <label style="color:blue;">Name:</label>
+        <input type="text" name="name"><br><br>
+        <label style="color:blue;">Email:</label>
+        <input type="email" name="email"><br><br>
+
+        </form>
+
+    
+</body>
+</html>
+
+10-14:
+index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>This is heading</h1>
+    <p>This is a paragraph1.</p>
+    <p>This is a paragraph2.</p>
+    <p>This is a paragraph3.</p>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+    </nav>
+    <form>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br><br>
+        <input type="submit" value="Submit" >
+    </form>
+</body>
+</html>
+style.css
+h1{color:purple;
+
+}
+p{font-size:20px;color:darkgreen;}
+nav{background-color:lightblue;padding:10px;}
+nav a{color:darkblue;text-decoration:none;margin-right:10px;}
+form{background-color:lightgray;padding:20px;border-radius:5px;}
+
+
+college:
+index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City College Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>City College of Science</h1>
+    </header>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Academics</a>
+        <a href="#">Admissions</a>
+        <a href="#">Contact</a>
+    </nav>
+
+    <div class="hero">
+        <h2>Welcome to Your Future</h2>
+        <p>Providing quality education and building leaders for tomorrow.</p>
+    </div>
+
+    <div class="container">
+        <main>
+            <h3>Latest Announcements</h3>
+            <table>
+                <tr>
+                    <th>Event</th>
+                    <th>Date</th>
+                </tr>
+                <tr>
+                    <td>Fall Registration Open</td>
+                    <td>July 15</td>
+                </tr>
+                <tr>
+                    <td>Orientation Day</td>
+                    <td>August 1</td>
+                </tr>
+            </table>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 City College. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
+style.css
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+
+header, footer {
+    background-color: #003366;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+nav {
+    background-color: #333;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    display: inline-block;
+}
+
+.hero {
+    text-align: center;
+    padding: 20px;
+    background-color: #e2e2e2;
+}
+
+.container {
+    padding: 20px;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 10px;
+}
+
+th {
+    background-color: #003366;
+    color: white;
+}
+
+selectors:
+index.html
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        h1 {
+            color: red;
+            padding: 20px;
+        }
+        p {
+            color: blue;
+            padding: 10px;
+        }
+        .highlight {
+            background-color: yellow;
+            color: black;
+        }
+        .card{
+            border: 1px solid #ccc;
+            padding: 10px;
+            box-shadow: 10px;
+        }
+        #heading {
+            color:blue;
+            text-align:center;
+        }
+        #main-title {
+           
+            text-align:center;
+        }
+        h1{color:red;}
+        button{background-color:green;}
+        .content{color:blue;}
+    </style>
+</head>
+
+<body>
+
+    <h1>Heading</h1>
+    <p>Paragraph</p>
+    <p class="highlight">Highlighted Paragraph</p>
+    <div class="card">
+        <p>Card Content</p>
+        <p>cards</p>
+
+    </div>
+    <h1 id="heading">Heading with ID</h1>
+    <h1 id="main-title">Main Title</h1>
+    <p class="content">Content Paragraph</p>
+    <button>Click Me</button>
+</body>
+</html>
+
